@@ -54,7 +54,7 @@ const Navbar = ({ scrollToIntroduction, scrollToPortfolio, scrollToSkills }) => 
                     <Grid size={{ xs: 2, md: 6 }} display="flex" alignItems="center" >
                         <Box
                             component="img"
-                            src="./images/aes.png"
+                            src="images/aes.png"
                             alt="My Portfolio Logo"
                             sx={{
                                 height: { xs: "3rem", md: isScrolled ? "2.6rem" : "6rem" },
@@ -74,7 +74,6 @@ const Navbar = ({ scrollToIntroduction, scrollToPortfolio, scrollToSkills }) => 
                                 width: "auto",
                                 transition: "height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease-in-out",
                                 cursor: "pointer",
-                                filter: { xs: "invert(1) brightness(2)", md: isScrolled ? "invert(1) brightness(2)" : "none" },
                             }}
                             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
                         />
