@@ -77,7 +77,7 @@ const Navbar = ({ scrollToIntroduction, scrollToPortfolio, scrollToSkills }) => 
                             }}
                             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
                         />
-                        <Typography variant="h1">#1</Typography>
+                        <Typography variant="h1">#2</Typography>
                     </Grid>
                     {/* Desktop Navigation */}
                     <Grid
