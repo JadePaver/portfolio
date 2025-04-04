@@ -5,6 +5,9 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close"; // ✅ Import Close Icon
 import { motion } from "framer-motion";
 
+import myLogo from "../../../assests/myLogo.png";
+
+
 const Navbar = ({ scrollToIntroduction, scrollToPortfolio, scrollToSkills }) => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [drawerOpen, setDrawerOpen] = useState(false);
@@ -51,7 +54,7 @@ const Navbar = ({ scrollToIntroduction, scrollToPortfolio, scrollToSkills }) => 
                     <Grid size={{ xs: 2, md: 6 }} display="flex" alignItems="center" >
                         <Box
                             component="img"
-                            src="/myLogo.svg"
+                            src="./images/aes.png"
                             alt="My Portfolio Logo"
                             sx={{
                                 height: { xs: "3rem", md: isScrolled ? "2.6rem" : "6rem" },
@@ -62,8 +65,21 @@ const Navbar = ({ scrollToIntroduction, scrollToPortfolio, scrollToSkills }) => 
                             }}
                             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
                         />
+                        <Box
+                            component="img"
+                            src={myLogo}
+                            alt="My Portfolio Logo"
+                            sx={{
+                                height: { xs: "3rem", md: isScrolled ? "2.6rem" : "6rem" },
+                                width: "auto",
+                                transition: "height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease-in-out",
+                                cursor: "pointer",
+                                filter: { xs: "invert(1) brightness(2)", md: isScrolled ? "invert(1) brightness(2)" : "none" },
+                            }}
+                            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                        />
+                        <Typography variant="h1">#1</Typography>
                     </Grid>
-
                     {/* Desktop Navigation */}
                     <Grid
                         item
@@ -102,6 +118,7 @@ const Navbar = ({ scrollToIntroduction, scrollToPortfolio, scrollToSkills }) => 
                             >
                                 DOWNLOAD CV
                             </Button>
+                            <Typography variant="h2">1</Typography>
                         </Stack>
                     </Grid>
 
