@@ -1,15 +1,15 @@
 import { Typography, IconButton, Box } from "@mui/material";
 import Grid from "@mui/material/Grid2";
-import { useNavigate } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import aesImage from "../../assests/images/aes.png";
-import aesImage1 from "../../assests/images/aes1.png";
-import aesImage2 from "../../assests/images/aes2.png";
-import aesImage3 from "../../assests/images/aes3.png";
-import aesImage4 from "../../assests/images/aes4.png";
+import { useNavigate } from "react-router-dom";
 import Footer from "../Dashboard/components/footer";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
+
+import ledgerImage from "../../assests/images/gsoLedger.png";
+import ledgerImage1 from "../../assests/images/ledger1.png";
+import ledgerImage2 from "../../assests/images/ledger2.png";
+import ledgerImage3 from "../../assests/images/ledger3.png";
 
 const MotionBox = motion(Box);
 const MotionTypography = motion(Typography);
@@ -62,14 +62,15 @@ const fadeInUpVariant = {
     },
 };
 
+const MotionIconButton = motion(IconButton);
 
-
-const AesPage = () => {
+const LedgerPage = () => {
     const navigate = useNavigate();
 
+    // Animation settings for the fade-in effect
     const animationSettings = {
-        initial: { opacity: 0, x: 100 },
-        animate: { opacity: 1, x: 0 },
+        initial: { opacity: 0, y: 50 },
+        animate: { opacity: 1, y: 0 },
         transition: {
             type: "spring",
             stiffness: 250,  // Increased stiffness for a stronger bounce
@@ -78,7 +79,6 @@ const AesPage = () => {
         }
     };
 
-    const MotionIconButton = motion(IconButton);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -136,8 +136,9 @@ const AesPage = () => {
                         </motion.div>
                     </Box>
                 </Grid>
+
                 <Grid container size={{ md: 11 }}>
-                    {/* Image wrapped in Box with lazy load */}
+                    {/* Animated Image */}
                     <Grid size={{ md: 12 }} sx={{ mb: 2 }}>
                         <MotionBox
                             variants={boxVariant}
@@ -146,8 +147,8 @@ const AesPage = () => {
                             exit="exit"
                             viewport={{ once: true }}
                             component="img"
-                            src={aesImage}
-                            alt="AES"
+                            src={ledgerImage}
+                            alt="ledgerImage"
                             loading="lazy" // Enable lazy loading for the image
                             sx={{
                                 width: "100%",
@@ -157,6 +158,7 @@ const AesPage = () => {
                             }}
                         />
                     </Grid>
+                    {/* Animated Typography 1 */}
                     <Grid size={{ md: 2 }}>
                         <MotionTypography
                             variants={fadeInUpVariant}
@@ -170,17 +172,15 @@ const AesPage = () => {
                             January 16, 2025
                         </MotionTypography>
                     </Grid>
+                    {/* Animated Typography 2 */}
                     <Grid size={{ md: 10 }}>
                         <MotionTypography
                             variants={fadeInUpVariant}
                             initial="hidden"
                             whileInView="visible"
                             viewport={{ once: true }}
-                            variant="body1"
-                            fontWeight={1}
-                            color="primary.main"
-                        >
-                            React,Express,MUI
+                            variant="body1" fontWeight={1} color="primary.main">
+                            React, Express, MUI
                         </MotionTypography>
                     </Grid>
                     <Grid size={{ md: 12 }} sx={{ mt: 2 }}>
@@ -188,21 +188,43 @@ const AesPage = () => {
                             variants={fadeInUpVariant}
                             initial="hidden"
                             whileInView="visible"
-                            viewport={{ once: true }}
-                            variant="h3"
-                            fontWeight={900}
-                        >Advance Educational Smart System (AESS)</MotionTypography>
+                            viewport={{ once: true }} variant="h3" fontWeight={900}>Ledger System</MotionTypography>
                     </Grid>
-
                     <Grid size={{ md: 12 }} sx={{ mt: 1 }}>
                         <MotionTypography
                             variants={fadeInUpVariant}
                             initial="hidden"
                             whileInView="visible"
+                            viewport={{ once: true }} variant="body1">
+                            The Ledger System for the Property Management Department efficiently tracks and manages landowner payments, property details, including contracts, amortization schedules, and titles, providing a comprehensive overview of property ownership and financial obligations.
+                        </MotionTypography>
+                    </Grid>
+                    <Grid size={{ md: 12 }} sx={{ mt: 6, display: 'flex', justifyContent: 'center' }}>
+                        <MotionBox
+                            variants={boxVariant}
+                            initial="hidden"
+                            whileInView="visible"
+                            exit="exit"
                             viewport={{ once: true }}
-                            variant="body1"
-                        >
-                            An adaptive learning system for the university that was developed during the pandemic lockdown and other situations where students or teachers were unable to go to the university. This system was designed to provide flexible and personalized learning experiences, ensuring that education continued seamlessly despite restrictions on in-person classes. It leverages advanced technology to support remote learning, enhance student engagement, and offer real-time feedback, making it a vital tool for both students and educators in adapting to unforeseen circumstances and changing learning environments.
+                            component="img"
+                            src={ledgerImage1}
+                            alt="ledger1"
+                            loading="lazy"
+                            sx={{
+                                width: "auto",
+                                maxHeight: "600px",
+                                objectFit: "cover",
+                                boxShadow: 2,
+                            }}
+                        />
+                    </Grid>
+                    <Grid size={{ md: 12 }} sx={{ mt: 6 }}>
+                        <MotionTypography
+                            variants={fadeInUpVariant}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true }} variant="body1">
+                            I designed this system to have a modern Web3 aesthetic while ensuring it remains ergonomic, providing an intuitive and comfortable user experience for office staff, especially for the ease and efficiency of ledger personnel.
                         </MotionTypography>
                     </Grid>
                     <Grid container size={{ md: 12 }} sx={{ mt: 6 }} spacing={2}>
@@ -214,8 +236,8 @@ const AesPage = () => {
                                 exit="exit"
                                 viewport={{ once: true }}
                                 component="img"
-                                src={aesImage1}
-                                alt="AES"
+                                src={ledgerImage2}
+                                alt="ledgerImage2"
                                 loading="lazy"
                                 sx={{
                                     width: "100%",
@@ -233,8 +255,8 @@ const AesPage = () => {
                                 exit="exit"
                                 viewport={{ once: true }}
                                 component="img"
-                                src={aesImage2}
-                                alt="AES"
+                                src={ledgerImage3}
+                                alt="ledgerImage3"
                                 loading="lazy"
                                 sx={{
                                     width: "100%",
@@ -250,76 +272,8 @@ const AesPage = () => {
                             variants={fadeInUpVariant}
                             initial="hidden"
                             whileInView="visible"
-                            viewport={{ once: true }}
-                            variant="h6"
-                            fontWeight="bold"
-                        >Managing Classrooms</MotionTypography></Grid>
-                    <Grid size={{ md: 12 }} sx={{ mt: 4 }}>
-                        <MotionTypography
-                            variants={fadeInUpVariant}
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true }}
-                            variant="body1">
-                            It enables the management of a classroom by organizing students, creating subjects for enrollment, developing modules, and even setting up assessments. Additionally, it allows for easy tracking of student scores and provides insights into specific mistakes made by individual students.It also allows guardians to create accounts and track the academic performance of their ward within the system.
-                        </MotionTypography>
-                    </Grid>
-                    <Grid size={{ md: 12 }} sx={{ mt: 6, display: 'flex', justifyContent: 'center' }}>
-                        <MotionBox
-                            variants={boxVariant}
-                            initial="hidden"
-                            whileInView="visible"
-                            exit="exit"
-                            viewport={{ once: true }}
-                            component="img"
-                            src={aesImage3}
-                            alt="AES"
-                            loading="lazy"
-                            sx={{
-                                width: "auto",
-                                maxHeight: "600px",
-                                objectFit: "cover",
-                                boxShadow: 2,
-                            }}
-                        />
-                    </Grid>
-                    <Grid size={{ md: 12 }} sx={{ mt: 6, display: 'flex', justifyContent: 'center' }}>
-                        <MotionBox
-                            variants={boxVariant}
-                            initial="hidden"
-                            whileInView="visible"
-                            exit="exit"
-                            viewport={{ once: true }}
-                            component="img"
-                            src={aesImage4}
-                            alt="AES"
-                            loading="lazy"
-                            sx={{
-                                width: "auto",
-                                maxHeight: "1000px",
-                                objectFit: "cover",
-                                boxShadow: 2,
-                            }}
-                        />
-                    </Grid>
-                    <Grid size={{ md: 12 }} sx={{ mt: 6 }}>
-                        <MotionTypography
-                            variants={fadeInUpVariant}
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true }}
-                            variant="h6"
-                            fontWeight="bold"
-                        >Data Records</MotionTypography></Grid>
-                    <Grid size={{ md: 12 }} sx={{ mt: 6 }}>
-                        <MotionTypography
-                            variants={fadeInUpVariant}
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true }}
-                            variant="body1"
-                        >
-                            With all the data integrated into the system, scores and overall averages are now easily tracked and reported, benefiting both students and university staff for personal and academic use.
+                            viewport={{ once: true }} variant="body1">
+                            The system features dynamic fields and a flexible date range report, enabling it to easily meet the complex and varied reporting requirements of other agencies. This adaptability ensures that users can generate customized reports that align with different formats, data parameters, and timeframes, providing accurate and comprehensive insights tailored to the needs of each agency.
                         </MotionTypography>
                     </Grid>
                     <Grid size={{ md: 12 }} sx={{ mt: 6 }}>
@@ -327,9 +281,8 @@ const AesPage = () => {
                             variants={fadeInUpVariant}
                             initial="hidden"
                             whileInView="visible"
-                            viewport={{ once: true }}
-                            variant="body1"
-                        >That's all, thank you.</MotionTypography>
+                            viewport={{ once: true }} variant="body1">That's all, thank you.
+                        </MotionTypography>
                     </Grid>
                 </Grid>
             </Grid>
@@ -338,6 +291,6 @@ const AesPage = () => {
             </Grid>
         </>
     );
-};
+}
 
-export default AesPage;
+export default LedgerPage;

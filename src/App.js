@@ -6,7 +6,7 @@ import AnimatedRoutes from "./AnimatedRoutes"; // Import animated routes
 const theme = createTheme({
   palette: {
     primary: { main: "#800000", dark: "#4b0000", light: "#b22222", },
-    secondary: { main: "#FFFFFF" },
+    secondary: { main: "#FFFFFF", dark: "#000000", light: "#333333", },
     accent: { main: "#D7D7D7" },
   },
   components: {

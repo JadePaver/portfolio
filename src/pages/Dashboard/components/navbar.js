@@ -3,9 +3,10 @@ import Grid from "@mui/material/Grid2";
 import { AppBar, Stack, Button, Box, Drawer, IconButton, List, ListItem, ListItemText, Typography } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close"; // ✅ Import Close Icon
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
-import myLogo from "../../../assests/myLogo.png";
+import myLogo from "../../../assests/myLogo.svg";
+import myCV from "../../../assests/paver-cv.pdf"
 
 
 const Navbar = ({ scrollToIntroduction, scrollToPortfolio, scrollToSkills }) => {
@@ -33,107 +34,98 @@ const Navbar = ({ scrollToIntroduction, scrollToPortfolio, scrollToSkills }) => 
 
     return (
         <>
-            <AppBar
-                position="fixed"
-                sx={{
-                    height: { md: isScrolled ? "7vh" : "14vh", },
-                    py: "1rem",
-                    top: { md: 0, xs: isScrolled ? "-12%" : 0 },
-                    left: 0,
-                    right: 0,
-                    bgcolor: { md: isScrolled ? "primary.main" : "transparent", xs: "primary.main" },
-                    transition: "all 0.2s ease-in-out",
-                    boxShadow: 0,
-                    display: "flex",
-                    justifyContent: "center",
-                    zIndex: 1301,
-                    overflow: "hidden",
-                }}
+            <motion.div
+                initial={{ opacity: 0, y: -200 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -200 }}
+                transition={{ duration: 0.6 }}
             >
-                <Grid container alignItems="center" justifyContent="space-between" sx={{ p: { xs: "0rem 2rem", md: "0 2rem" }, height: "100%" }}>
-                    <Grid size={{ xs: 2, md: 6 }} display="flex" alignItems="center" >
-                        <Box
-                            component="img"
-                            src="images/aes.png"
-                            alt="My Portfolio Logo"
-                            sx={{
-                                height: { xs: "3rem", md: isScrolled ? "2.6rem" : "6rem" },
-                                width: "auto",
-                                transition: "height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease-in-out",
-                                cursor: "pointer",
-                                filter: { xs: "invert(1) brightness(2)", md: isScrolled ? "invert(1) brightness(2)" : "none" },
-                            }}
-                            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                        />
-                        <Box
-                            component="img"
-                            src={myLogo}
-                            alt="My Portfolio Logo"
-                            sx={{
-                                height: { xs: "3rem", md: isScrolled ? "2.6rem" : "6rem" },
-                                width: "auto",
-                                transition: "height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease-in-out",
-                                cursor: "pointer",
-                            }}
-                            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                        />
-                        <Typography variant="h1">#2</Typography>
-                    </Grid>
-                    {/* Desktop Navigation */}
-                    <Grid
-                        item
-                        xs={10}
-                        md={6}
-                        container
-                        alignItems="center"
-                        justifyContent="center"
-                        sx={{
-                            display: { xs: "none", md: "flex" }, // ✅ Use "flex" instead of "block" for centering
-                            height: "100%",
-                        }}
-                    >       <Stack flexDirection="row" gap={3} justifyContent="flex-end" width="100%" alignItems="center" >
-                            <Button variant="nav" onClick={scrollToIntroduction}>About me</Button>
-                            <Button variant="nav" onClick={scrollToSkills}>Skills</Button>
-                            <Button variant="nav" onClick={scrollToPortfolio}>Portfolio</Button>
-                            <Button
-                                variant="nav"
-                                sx={(theme) => ({
-                                    bgcolor: theme.palette.secondary.main, // White background
-                                    color: theme.palette.primary.main, // Maroon text
-                                    transition: "all 0.3s ease-in-out",
-                                    "&:hover": {
-                                        boxShadow: `0px 0px 10px ${theme.palette.secondary.main}`, // Stronger shadow on hover
-                                        transform: "translateX(3px) translateY(-3px)", // Slight movement
-                                    },
-                                })}
-                                onClick={() => {
-                                    const link = document.createElement("a");
-                                    link.href = "/itBerries.svg"; // Path to your CV file
-                                    link.download = "itBerries.svg"; // Desired file name
-                                    document.body.appendChild(link);
-                                    link.click();
-                                    document.body.removeChild(link);
+                <AppBar
+                    position="fixed"
+                    sx={{
+                        height: { md: isScrolled ? "7vh" : "14vh", },
+                        py: { xs: "1rem", md: "0rem" },
+                        top: { md: 0, xs: isScrolled ? "-12%" : 0 },
+                        left: 0,
+                        right: 0,
+                        bgcolor: { md: isScrolled ? "primary.main" : "transparent", xs: "primary.main" },
+                        transition: "all 0.2s ease-in-out",
+                        boxShadow: 0,
+                        display: "flex",
+                        justifyContent: "center",
+                        zIndex: 1301,
+                        overflow: "hidden",
+                    }}
+                >
+                    <Grid container alignItems="center" justifyContent="space-between" sx={{ p: { xs: "0rem 2rem", md: "0 2rem" }, height: "100%" }}>
+                        <Grid size={{ xs: 2, md: 6 }} display="flex" alignItems="center" >
+                            <Box
+                                component="img"
+                                src={myLogo}
+                                alt="My Portfolio Logo"
+                                sx={{
+                                    height: { xs: "3rem", md: isScrolled ? "2.6rem" : "6rem" },
+                                    width: "auto",
+                                    transition: "height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease-in-out",
+                                    cursor: "pointer",
+                                    filter: { xs: "invert(1) brightness(2)", md: isScrolled ? "invert(1) brightness(2)" : "none" },
                                 }}
-                            >
-                                DOWNLOAD CV
-                            </Button>
-                            <Typography variant="h2">1</Typography>
-                        </Stack>
-                    </Grid>
+                                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                            />
+                        </Grid>
+                        <Grid
+                            item
+                            xs={10}
+                            md={6}
+                            container
+                            alignItems="center"
+                            justifyContent="center"
+                            sx={{
+                                display: { xs: "none", md: "flex" }, // ✅ Use "flex" instead of "block" for centering
+                                height: "100%",
+                            }}
+                        >       <Stack flexDirection="row" gap={3} justifyContent="flex-end" width="100%" alignItems="center" >
+                                <Button variant="nav" onClick={scrollToIntroduction}>About me</Button>
+                                <Button variant="nav" onClick={scrollToSkills}>Skills</Button>
+                                <Button variant="nav" onClick={scrollToPortfolio}>Portfolio</Button>
+                                <Button
+                                    variant="nav"
+                                    sx={(theme) => ({
+                                        bgcolor: theme.palette.secondary.main, // White background
+                                        color: theme.palette.primary.main, // Maroon text
+                                        transition: "all 0.3s ease-in-out",
+                                        "&:hover": {
+                                            boxShadow: `0px 0px 10px ${theme.palette.secondary.main}`, // Stronger shadow on hover
+                                            transform: "translateX(3px) translateY(-3px)", // Slight movement
+                                        },
+                                    })}
+                                    onClick={() => {
+                                        const link = document.createElement("a");
+                                        link.href = myCV; // Path to your CV file
+                                        link.download = "paver-cv.pdf"; // Desired file name
+                                        document.body.appendChild(link);
+                                        link.click();
+                                        document.body.removeChild(link);
+                                    }}
+                                >
+                                    DOWNLOAD CV
+                                </Button>
+                            </Stack>
+                        </Grid>
 
-                    {/* Mobile Menu Icon */}
-                    <Grid size={{ xs: 10, md: 6 }} sx={{ display: { xs: "block", md: "none" }, textAlign: "right" }}>
-                        <IconButton onClick={() => setDrawerOpen(!drawerOpen)}>
-                            {drawerOpen ? ( // ✅ Toggle between Menu and Close icons
-                                <CloseIcon sx={{ fontSize: "2rem", color: "secondary.main" }} />
-                            ) : (
-                                <MenuIcon sx={{ fontSize: "2rem", color: "secondary.main" }} />
-                            )}
-                        </IconButton>
+                        {/* Mobile Menu Icon */}
+                        <Grid size={{ xs: 10, md: 6 }} sx={{ display: { xs: "block", md: "none" }, textAlign: "right" }}>
+                            <IconButton onClick={() => setDrawerOpen(!drawerOpen)}>
+                                {drawerOpen ? ( // ✅ Toggle between Menu and Close icons
+                                    <CloseIcon sx={{ fontSize: "2rem", color: "secondary.main" }} />
+                                ) : (
+                                    <MenuIcon sx={{ fontSize: "2rem", color: "secondary.main" }} />
+                                )}
+                            </IconButton>
+                        </Grid>
                     </Grid>
-                </Grid>
-            </AppBar>
-
+                </AppBar>
+            </motion.div>
             {/* Drawer with Bottom Animation */}
             <Drawer
                 anchor="top"
@@ -170,8 +162,8 @@ const Navbar = ({ scrollToIntroduction, scrollToPortfolio, scrollToSkills }) => 
                                 text: "DOWNLOAD CV",
                                 action: () => {
                                     const link = document.createElement("a");
-                                    link.href = "/itBerries.svg"; // Path to your CV file
-                                    link.download = "itBerries.svg"; // Desired file name
+                                    link.href = myCV; // Path to your CV file
+                                    link.download = "paver-cv.pdf"; // Desired file name
                                     document.body.appendChild(link);
                                     link.click();
                                     document.body.removeChild(link);

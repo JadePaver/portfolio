@@ -6,6 +6,7 @@ import { Typography, Box, Card, CardContent } from "@mui/material";
 
 import DesignServicesIcon from "@mui/icons-material/DesignServices";
 import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
+import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 import InfoCard from "./infocard";
 import { ScreenWidthContext } from "../dashboard";
 
@@ -141,13 +142,12 @@ const AboutSection = ({ scrollY, ref }) => {
                     <Typography
                         variant="body1"
                         sx={{
-                            maxWidth: {sm:"",md:"50%"}, textAlign: "center",
+                            maxWidth: { sm: "", md: "50%" }, textAlign: "center",
                             lineHeight: 1.6,
-                            letterSpacing: "0.5px",
+                            letterSpacing: "1px",
                         }}
                     >
-                        Nulla in velit a metus rhoncus tempus. Nulla congue nulla vel sem varius finibus. Sed ornare sit amet
-                        lorem sed viverra. In vel urna quis libero viverra facilisis ut ac est.
+                        I specialize in designing, developing, and managing digital solutions that cater to modern user needs. With a decent foundation in UI/UX, full-stack development, and project management, I ensure seamless and functional applications that meet industry standards. My expertise spans across front-end and back-end technologies, delivering innovative and efficient web and mobile applications.
                     </Typography>
                 </Grid>
             </motion.div>
@@ -164,7 +164,7 @@ const AboutSection = ({ scrollY, ref }) => {
                     <motion.div initial="hidden" whileInView="visible" variants={cardVariants.left(0.5)} viewport={{ once: true }}>
                         <InfoCard
                             title="Design"
-                            description="I can design the site based on your needs and suggestions. I can also design the site from scratch and consult you during the job."
+                            description="I create intuitive and visually appealing user interfaces by leveraging UI/UX principles, wireframing, and prototyping tools like Figma. My designs focus on responsiveness, and accessibility, ensuring a seamless user experience across all devices."
                             icon={DesignServicesIcon}
                         />
                     </motion.div>
@@ -172,18 +172,18 @@ const AboutSection = ({ scrollY, ref }) => {
                 <Grid size={{ md: 6 }} >
                     <motion.div initial="hidden" whileInView="visible" variants={cardVariants.right(0.5)} viewport={{ once: true }}>
                         <InfoCard
-                            title="Design"
-                            description="I can design the site based on your needs and suggestions. I can also design the site from scratch and consult you during the job."
-                            icon={DesignServicesIcon}
+                            title="Development"
+                            description="I develop dynamic and scalable applications using JavaScript, React, and Node.js for web development, while also utilizing Flutter for mobile applications. My expertise includes API integration, backend development with Express.js and MySQL, and cloud deployment to optimize application performance."
+                            icon={CodeRoundedIcon}
                         />
                     </motion.div>
                 </Grid>
                 <Grid size={{ md: 6 }} >
                     <motion.div initial="hidden" whileInView="visible" variants={cardVariants.bottom(0.5)} viewport={{ once: true }}>
                         <InfoCard
-                            title="Design"
-                            description="I can design the site based on your needs and suggestions. I can also design the site from scratch and consult you during the job."
-                            icon={DesignServicesIcon}
+                            title="Management"
+                            description="I lead projects efficiently using agile methodologies, ensuring smooth execution through sprint planning, daily stand-ups, and milestone tracking. By collaborating with cross-functional teams and overseeing product development, I help bring innovative ideas to life while maintaining clear communication with stakeholders."
+                            icon={SupervisorAccountIcon}
                         />
                     </motion.div>
                 </Grid>

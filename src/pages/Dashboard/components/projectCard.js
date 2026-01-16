@@ -2,9 +2,11 @@ import Grid from "@mui/material/Grid2";
 import { Box, Typography, Button } from "@mui/material";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const ProjectCard = ({ imageSrc, category, title, description, moreLink, demoLink, index }) => {
     const [isHovered, setIsHovered] = useState(false);
+    const navigate = useNavigate();
 
     return (
         <Grid container size={{ md: 4 }}>
@@ -52,7 +54,7 @@ const ProjectCard = ({ imageSrc, category, title, description, moreLink, demoLin
                         className="overlayText"
                         sx={{
                             position: "absolute",
-                            padding: {xs:"1rem 1rem",md:"1rem 5rem"},
+                            padding: { xs: "1rem 1rem", md: "1rem 5rem" },
                             display: "flex",
                             flexDirection: "column",
                             justifyContent: "center",
@@ -87,15 +89,15 @@ const ProjectCard = ({ imageSrc, category, title, description, moreLink, demoLin
 
                             <Grid container spacing={2} justifyContent='center' sx={{ mt: 'auto ' }}>
                                 <Grid item md={6} xs={12}>
-                                    <Button variant="more" color="primary" fullWidth href={moreLink}>
+                                    <Button variant="more" color="primary" fullWidth onClick={() => navigate(moreLink)}>
                                         MORE
                                     </Button>
                                 </Grid>
-                                <Grid item md={6} xs={12}>
+                                {/* <Grid item md={6} xs={12}>
                                     <Button variant="more" color="secondary" fullWidth href={demoLink}>
                                         DEMO
                                     </Button>
-                                </Grid>
+                                </Grid> */}
                             </Grid>
                         </motion.div>
                     </Box>

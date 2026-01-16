@@ -16,6 +16,10 @@ import PortfolioSection from "./components/portfolio";
 import SkillsSection from "./components/skill";
 import Footer from "./components/footer";
 
+import mountainBg from "../../assests/mountain_bg.jpg";
+import profile from "../../assests/profile.png";
+
+
 const textVariants = {
     hidden: { opacity: 0, y: -50 }, // Start above and invisible
     visible: (custom) => ({
@@ -76,7 +80,7 @@ const DashboardPage = () => {
                     left: 0,
                     width: "100%",
                     height: "100vh", // Ensures it covers the full viewport
-                    backgroundImage: `url("/mountain_bg.jpg")`,
+                    backgroundImage: `url(${mountainBg})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                     backgroundRepeat: "no-repeat",
@@ -144,7 +148,7 @@ const DashboardPage = () => {
                                 </motion.div>
                             </Grid>
 
-                            <Grid container size={{ xs: 12, md: 12 }} sx={{ mt: 3, height:"fit-content" }} spacing={2} justifyContent="left" >
+                            <Grid container size={{ xs: 12, md: 12 }} sx={{ mt: 3, height: "fit-content" }} spacing={2} justifyContent="left" >
                                 <motion.div custom={3} initial="hidden" animate="visible" variants={textVariants}>
                                     <Grid size={{ xs: 6, md: 6 }}>
                                         <motion.div
@@ -172,7 +176,6 @@ const DashboardPage = () => {
                                     </Grid>
                                 </motion.div>
                                 <motion.div custom={3.2} initial="hidden" animate="visible" variants={textVariants}>
-
                                     <Grid size={{ xs: 6, md: 6 }}>
                                         <motion.div
                                             whileHover={{ scale: 1.2, boxShadow: "0px 5px 15px rgba(0,0,0,0.2)" }}
@@ -238,18 +241,18 @@ const DashboardPage = () => {
                             alignItems: "flex-end",
                         }}
                     ><motion.div
-                        initial={{ opacity: 0, y: 20 }} // Start invisible and slightly below
-                        animate={{ opacity: 1, y: 0 }}  // Fade in and move to normal position
-                        transition={{ duration: 1.4, ease: "easeOut", delay: 2 }} // Smooth transition
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1.4, ease: "easeOut", delay: 2 }}
                     >
                             <Box
                                 component="img"
-                                src="/profile.png" // ✅ Replace with your image path
+                                src={profile}
                                 alt="Portfolio Image"
                                 sx={{
                                     width: { xs: "100%", md: "85%" },
-                                    height: { xs: "100%", md: "80%" }, // 45% on xs screens, 80% on md and above
-                                    objectFit: "cover", // ✅ Ensures proper scaling
+                                    height: { xs: "100%", md: "80%" },
+                                    objectFit: "cover",
                                 }}
                             />
                         </motion.div>

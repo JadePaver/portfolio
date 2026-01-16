@@ -4,6 +4,19 @@ import { Typography, Box } from "@mui/material";
 import { motion } from "framer-motion";
 import SvgLabel from "./svgLabel";
 
+import html from "../../../assests/logos/html.svg";
+import css from "../../../assests/logos/css.svg";
+import javascript from "../../../assests/logos/javascript.svg";
+import react from "../../../assests/logos/react.svg";
+import git from "../../../assests/logos/git.svg";
+import figma from "../../../assests/logos/figma.svg";
+import nodejs from "../../../assests/logos/nodejs.svg";
+import mysql from "../../../assests/logos/mysql.svg";
+import mongodb from "../../../assests/logos/monggodb.svg";
+import c from "../../../assests/logos/c.svg";
+import cplus from "../../../assests/logos/cplus.svg";
+
+
 const SkillsSection = ({ scrollY, ref }) => {
 
     const cardVariants = {
@@ -102,15 +115,15 @@ const SkillsSection = ({ scrollY, ref }) => {
             </Grid>
             <Grid container size={{ md: 12 }} spacing={3} sx={{ m: "2% 0" }} >
                 {[
-                    { src: "/logos/html.svg", label: "HTML" },
-                    { src: "/logos/css.svg", label: "CSS" },
-                    { src: "/logos/javascript.svg", label: "JAVASCRIPT" },
-                    { src: "/logos/react.svg", label: "REACT" },
-                    { src: "/logos/git.svg", label: "GIT" },
-                    { src: "/logos/figma.svg", label: "FIGMA" },
-                    { src: "/logos/nodejs.svg", label: "NODEJS" },
-                    { src: "/logos/mysql.svg", label: "MYSQL" },
-                    { src: "/logos/monggodb.svg", label: "MONGODB" },
+                    { src: html, label: "HTML" },
+                    { src: css, label: "CSS" },
+                    { src: javascript, label: "JAVASCRIPT" },
+                    { src: react, label: "REACT" },
+                    { src: git, label: "GIT" },
+                    { src: figma, label: "FIGMA" },
+                    { src: nodejs, label: "NODEJS" },
+                    { src: mysql, label: "MYSQL" },
+                    { src: mongodb, label: "MONGODB" },
                 ].map((item, index) => (
                     <Grid item size={{ xs: 4, sm: 6, md: 3 }} key={index}>
                         <SvgLabel src={item.src} label={item.label} index={index} />
@@ -135,8 +148,8 @@ const SkillsSection = ({ scrollY, ref }) => {
             </Grid>
             <Grid container size={{ xs: 12, md: 12 }} spacing={3} sx={{ m: "5% 0" }}>
                 {[
-                    { src: "/logos/c.svg", label: "C" },
-                    { src: "/logos/cplus.svg", label: "C++" },
+                    { src: c, label: "C" },
+                    { src: cplus, label: "C++" },
                 ].map((item, index) => (
                     <Grid item size={{ xs: 4, sm: 6, md: 3 }} key={index}>
                         <SvgLabel src={item.src} label={item.label} index={index} />

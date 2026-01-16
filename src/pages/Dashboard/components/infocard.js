@@ -36,8 +36,8 @@ const InfoCard = ({ title, description, icon: Icon }) => {
                 variant="body1"
                 sx={{
                     mt: 1,
-                    lineHeight: 1.5,
-                    letterSpacing: "0.3px",
+                    lineHeight: 1.6,
+                    letterSpacing: "1px",
                 }}
             >
                 {description}
