@@ -125,7 +125,7 @@ export default function MainLayout() {
             }}
           >
             <img
-              src="images/portfolio_logo.svg"
+              src={`${process.env.PUBLIC_URL}/images/portfolio_logo.svg`}
               alt="Portfolio Logo Background"
               width={110}
               height={110}
@@ -136,7 +136,7 @@ export default function MainLayout() {
               }}
             />
             <motion.img
-              src="images/portfolio_logo.svg"
+              src={`${process.env.PUBLIC_URL}/images/portfolio_logo.svg`}
               alt="Portfolio Logo"
               width={110}
               height={110}
@@ -185,7 +185,7 @@ export default function MainLayout() {
                   <Button
                     disableElevation
                     component="a"
-                    href="paver_cv.pdf"
+                    href={`${process.env.PUBLIC_URL}/paver_cv.pdf`}
                     download
                     variant="contained"
                     sx={{
@@ -279,7 +279,7 @@ export default function MainLayout() {
             fullWidth
             disableElevation
             component="a"
-            href="paver_cv.pdf"
+            href={`${process.env.PUBLIC_URL}/paver_cv.pdf`}
             download
             variant="contained"
             sx={{
@@ -327,7 +327,7 @@ export default function MainLayout() {
       >
         <Box
           component="img"
-          src="images/portfolio_logo.svg"
+          src={`${process.env.PUBLIC_URL}/images/portfolio_logo.svg`}
           alt="Portfolio Logo"
           sx={{
             width: { xs: 190, lg: 150 },
@@ -377,10 +377,10 @@ export default function MainLayout() {
           animate="visible"
         >
           {[
-            { src: "logos/facebook.svg", url: "https://www.facebook.com/jade.paver.5" },
-            { src: "logos/twitter.svg", url: "https://www.facebook.com/jade.paver.5" },
-            { src: "logos/instagram.svg", url: "https://www.facebook.com/jade.paver.5" },
-            { src: "logos/linkedin.svg", url: "https://www.linkedin.com/in/jade-paver-a6073a280/" },
+            { src: `${process.env.PUBLIC_URL}/logos/facebook.svg`, url: "https://www.facebook.com/jade.paver.5" },
+            { src: `${process.env.PUBLIC_URL}/logos/twitter.svg`, url: "https://www.facebook.com/jade.paver.5" },
+            { src: `${process.env.PUBLIC_URL}/logos/instagram.svg`, url: "https://www.facebook.com/jade.paver.5" },
+            { src: `${process.env.PUBLIC_URL}/logos/linkedin.svg`, url: "https://www.linkedin.com/in/jade-paver-a6073a280/" },
           ].map(({ src, url }) => (
             <Box
               key={src}

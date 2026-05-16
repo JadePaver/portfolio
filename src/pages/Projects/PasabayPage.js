@@ -35,7 +35,7 @@ function TechIconTooltip({ label, iconFile, alt, visibleIconVariants, visibleImg
         <Box
           component={motion.img}
           variants={visibleImgVariants}
-          src={`icons/${iconFile}`}
+          src={`${process.env.PUBLIC_URL}/icons/${iconFile}`}
           alt={alt ?? label}
           sx={{ width: { xs: 14, lg: 18 }, height: { xs: 14, lg: 18 }, willChange: "transform" }}
         />
@@ -58,7 +58,7 @@ export default function PasabayPage() {
   return (
     <ProjectLayout>
       <MotionStack spacing={2}>
-        <SlideInImage src="images/pasabay1.png" alt="pasabay image1" />
+        <SlideInImage src={`${process.env.PUBLIC_URL}/images/pasabay1.png`} alt="pasabay image1" />
 
         <Grid container spacing={{ xs: 0, lg: 2 }} sx={{ my: 3 }}>
           <Grid size={{ xs: 12, lg: 'auto' }} sx={{ order: { xs: 3, lg: 1 }, display: "flex", alignItems: "center" }}>
@@ -88,9 +88,9 @@ export default function PasabayPage() {
             <TypewriterText startBullet text={`Trust is a challenge: buyers need confidence in identity, hygiene, and consistency.`} />
           </Stack>
         </Stack>
-        <SlideInImage src="images/pasabay2.png" alt="pasabay image2" imgSx={{ height: "30vw", objectFit: "contain" }} />
+        <SlideInImage src={`${process.env.PUBLIC_URL}/images/pasabay2.png`} alt="pasabay image2" imgSx={{ height: "30vw", objectFit: "contain" }} />
         <TypewriterText text={`The app features an intuitive, easy-to-use interface with a Filipino theme that highlights local delicacies. It's designed for discovering nearby home-cooked meals, ordering quickly with clear pricing and delivery fees, and reordering favorites—or trying new daily menus. This concept was created during the pandemic, when most commercial restaurants and fast-food chains were not allowed to serve dine-in customers, making safe, convenient food access more important than ever.`} sx={{ pt: 4, pb: 12 }} />
-        <SlideInImage src="images/pasabay3.png" alt="pasabay image3" imgSx={{ height: "30vw", objectFit: "contain" }} />
+        <SlideInImage src={`${process.env.PUBLIC_URL}/images/pasabay3.png`} alt="pasabay image3" imgSx={{ height: "30vw", objectFit: "contain" }} />
         <TypewriterText text={`It also features an efficient ordering and payment flow to make the entire experience quick and hassle-free for you.`} sx={{ pt: 4, pb: 16 }} />
       </MotionStack>
     </ProjectLayout>

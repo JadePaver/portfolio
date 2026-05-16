@@ -18,7 +18,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 
-const logoSrc = "images/portfolio_logo.svg";
+const logoSrc = `${process.env.PUBLIC_URL}/images/portfolio_logo.svg`;
 
 const menuItems = [
   { label: "Home", section: "section-hero" },
@@ -85,7 +85,7 @@ function ResponsiveHeader({ scrollTo }) {
               variant="contained"
               color="warning"
               sx={{ fontWeight: 800, fontSize: "1rem", px: 4, py: 1 }}
-              href="paver_cv.pdf"
+              href={`${process.env.PUBLIC_URL}/paver_cv.pdf`}
               download
             >
               DOWNLOAD CV
@@ -137,7 +137,7 @@ function ResponsiveHeader({ scrollTo }) {
             color="warning"
             fullWidth
             sx={{ fontWeight: 800, fontSize: "1rem", py: 1 }}
-            href="paver_cv.pdf"
+            href={`${process.env.PUBLIC_URL}/paver_cv.pdf`}
             download
           >
             DOWNLOAD CV

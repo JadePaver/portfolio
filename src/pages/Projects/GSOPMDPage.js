@@ -34,7 +34,7 @@ function TechIconTooltip({ label, iconFile, alt, visibleIconVariants, visibleImg
       >
         <motion.img
           variants={visibleImgVariants}
-          src={`icons/${iconFile}`}
+          src={`${process.env.PUBLIC_URL}/icons/${iconFile}`}
           width={18}
           height={18}
           alt={alt ?? label}
@@ -59,7 +59,7 @@ export default function GSOPMDPage() {
   return (
     <ProjectLayout>
       <MotionStack spacing={2}>
-        <SlideInImage src="images/gso_pmd1.png" alt="gso pmd image1" />
+        <SlideInImage src={`${process.env.PUBLIC_URL}/images/gso_pmd1.png`} alt="gso pmd image1" />
 
         <Stack direction="row" spacing={6} alignItems="center" sx={{ my: 3 }}>
           <Typography variant="body2">January 16, 2025</Typography>
@@ -77,9 +77,9 @@ export default function GSOPMDPage() {
         <TypewriterText startBullet text={`Records and payments were managed through spreadsheets and paper forms, which isn't scalable long term.`} sx={{ pt: 2 }} />
         <TypewriterText startBullet text={`Tracking ownership and monitoring each awardee's balance/status was tedious and error-prone.`} />
         <TypewriterText startBullet text={`Payments and reports were difficult to consolidate and generate, especially for flexible/custom date ranges.`} sx={{ pb: 14 }} />
-        <SlideInImage src="images/gso_pmd2.png" alt="gso pmd image2" imgSx={{ height: "30vw", objectFit: "contain" }} />
+        <SlideInImage src={`${process.env.PUBLIC_URL}/images/gso_pmd2.png`} alt="gso pmd image2" imgSx={{ height: "30vw", objectFit: "contain" }} />
         <TypewriterText text={`The system is built around detailed Awardee tables that serve as a single source of truth for each beneficiary's complete record personal and application details, assigned lot/block information, and a full ledger history starting from the very first payment. To keep data exploration fast and responsive, I used React to power a dynamic UI that supports quick filtering, searching, and real-time updates as records change. On the backend, I implemented an Express API with Prisma ORM to enforce a clean, well-structured schema and enable efficient, reliable queries for ledger computation, reporting, and auditing.`} sx={{ pt: 3, pb: 8 }} />
-        <SlideInImage src="images/gso_pmd3.png" alt="gso pmd image3" imgSx={{ height: "30vw", objectFit: "contain" }} />
+        <SlideInImage src={`${process.env.PUBLIC_URL}/images/gso_pmd3.png`} alt="gso pmd image3" imgSx={{ height: "30vw", objectFit: "contain" }} />
         <TypewriterText text={`A key part of the system is its ledgering module, which records every transaction and status change to provide a clear, auditable financial timeline per awardee. This enables the Accounting, Treasurer, and Property Department to accurately monitor payments, validate contract compliance, and perform audits with confidence. Each awardee account is tracked by contract status—whether it is still amortizing, title released, or cancelled—so staff can quickly determine current standing, outstanding balances, and the complete payment history that supports every decision`} sx={{ pt: 3, pb: 8 }} />
       </MotionStack>
     </ProjectLayout>

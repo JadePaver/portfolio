@@ -35,7 +35,7 @@ function TechIconTooltip({ label, iconFile, alt, visibleIconVariants, visibleImg
         <Box
           component={motion.img}
           variants={visibleImgVariants}
-          src={`icons/${iconFile}`}
+          src={`${process.env.PUBLIC_URL}/icons/${iconFile}`}
           alt={alt ?? label}
           sx={{ width: { xs: 14, lg: 18 }, height: { xs: 14, lg: 18 }, willChange: "transform" }}
         />
@@ -58,7 +58,7 @@ export default function LedgerPage() {
   return (
     <ProjectLayout>
       <MotionStack spacing={2}>
-        <SlideInImage src="images/ledger1.png" alt="ledger image1" imgSx={{ height: "30vw", objectFit: "contain" }} />
+        <SlideInImage src={`${process.env.PUBLIC_URL}/images/ledger1.png`} alt="ledger image1" imgSx={{ height: "30vw", objectFit: "contain" }} />
 
         <Grid container spacing={{ xs: 0, lg: 2 }} sx={{ my: 3 }}>
           <Grid size={{ xs: 12, lg: 'auto' }} sx={{ order: { xs: 3, lg: 1 }, display: "flex", alignItems: "center" }}>
@@ -85,9 +85,9 @@ export default function LedgerPage() {
         <TypewriterText startBullet text={`Insightful at first glance, with charts that make spending patterns obvious at both category and overall levels`} />
         <TypewriterText startBullet text={`Secure and accessible, with flexible login options (email, Google, phone)`} />
         <TypewriterText startBullet text={`More than a tracker—an app with an agent that understands my own data and can provide personalized, actionable spending advice, also and someone to tell me when I'm overspending.`} sx={{ pb: 14 }} />
-        <SlideInImage src="images/ledger2.png" alt="ledger image2" />
+        <SlideInImage src={`${process.env.PUBLIC_URL}/images/ledger2.png`} alt="ledger image2" />
         <TypewriterText text={`The expense tracking easy to understand through interactive graphs and dynamic, clusterized expense tables. Transactions are grouped by category, by type such as credit or debit, and by time period so users can move quickly from a monthly overview to the exact entries that drive their spending. The table views support fast filtering, sorting, and totals, while the charts provide clear visual summaries of expenses per category and overall, making trends and problem areas easy to spot.`} sx={{ pt: 3, pb: 8 }} />
-        <SlideInImage src="images/ledger2.png" alt="ledger image3" imgSx={{ height: "30vw", objectFit: "contain" }} />
+        <SlideInImage src={`${process.env.PUBLIC_URL}/images/ledger2.png`} alt="ledger image3" imgSx={{ height: "30vw", objectFit: "contain" }} />
         <TypewriterText text={`This project reflects how I approach product-building end-to-end: designing for real personal needs, prioritizing performance with local storage, and ensuring reliability through cloud synchronization. With Supabase authentication + data sync and a Gemini-integrated chat assistant, Ledger App becomes not just a record of expenses, but a tool for building better money habits through data-aware insights and expert-style guidance.`} sx={{ pt: 3, pb: 8 }} />
       </MotionStack>
     </ProjectLayout>

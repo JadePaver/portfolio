@@ -162,7 +162,7 @@ export default function Home() {
             >
               <Box
                 component="img"
-                src="images/me_no_shade1.png"
+                src={`${process.env.PUBLIC_URL}/images/me_no_shade1.png`}
                 alt="Paver background"
                 sx={{
                   width: { xs: 220, md: 360, lg: 470 },
@@ -173,7 +173,7 @@ export default function Home() {
               />
               <Box
                 component={motion.img}
-                src="images/me_no_shade1.png"
+                src={`${process.env.PUBLIC_URL}/images/me_no_shade1.png`}
                 alt="Paver"
                 variants={{
                   rest: { scale: 1, y: 0, filter: "brightness(1) contrast(1)" },
@@ -248,10 +248,10 @@ export default function Home() {
               viewport={revealViewport}
             >
               {[
-                { src: "logos/facebook.svg", url: "https://www.facebook.com/jade.paver.5" },
-                { src: "logos/twitter.svg", url: "https://x.com/Zakkur29" },
-                { src: "logos/instagram.svg", url: "https://www.instagram.com/lincolns729" },
-                { src: "logos/linkedin.svg", url: "https://www.linkedin.com/in/jade-paver-a6073a280/" },
+                { src: `${process.env.PUBLIC_URL}/logos/facebook.svg`, url: "https://www.facebook.com/jade.paver.5" },
+                { src: `${process.env.PUBLIC_URL}/logos/twitter.svg`, url: "https://x.com/Zakkur29" },
+                { src: `${process.env.PUBLIC_URL}/logos/instagram.svg`, url: "https://www.instagram.com/lincolns729" },
+                { src: `${process.env.PUBLIC_URL}/logos/linkedin.svg`, url: "https://www.linkedin.com/in/jade-paver-a6073a280/" },
               ].map(({ src, url }) => (
                 <Box
                   key={src}
@@ -308,13 +308,13 @@ export default function Home() {
             >
               <Box
                 component="img"
-                src="images/me_no_shade2.png"
+                src={`${process.env.PUBLIC_URL}/images/me_no_shade2.png`}
                 alt="About Me background"
                 sx={{ width: { xs: 220, md: 360, lg: 470 }, position: "absolute", filter: "brightness(0.3) contrast(2) saturate(0)", zIndex: 1 }}
               />
               <Box
                 component={motion.img}
-                src="images/me_no_shade2.png"
+                src={`${process.env.PUBLIC_URL}/images/me_no_shade2.png`}
                 alt="About Me"
                 variants={{
                   rest: { scale: 1, y: 0, filter: "brightness(1) contrast(1)" },
