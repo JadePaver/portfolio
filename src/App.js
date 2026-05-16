@@ -1,24 +1,27 @@
-import logo from './logo.svg';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
+import MainLayout from './layouts/MainLayout';
+import Home from './pages/Home';
+import AESPage from './pages/Projects/AESPage';
+import PasabayPage from './pages/Projects/PasabayPage';
+import LedgerPage from './pages/Projects/LedgerPage';
+import FurniturePage from './pages/Projects/FurniturePage';
+import GSOPMDPage from './pages/Projects/GSOPMDPage';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<MainLayout />}>
+          <Route index element={<Home />} />
+        </Route>
+        <Route path="/projects/aes" element={<AESPage />} />
+        <Route path="/projects/pasabay" element={<PasabayPage />} />
+        <Route path="/projects/ledger" element={<LedgerPage />} />
+        <Route path="/projects/furniture" element={<FurniturePage />} />
+        <Route path="/projects/gso_pmd" element={<GSOPMDPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
