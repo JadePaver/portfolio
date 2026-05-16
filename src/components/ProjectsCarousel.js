@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Box, Typography, IconButton, Stack, useTheme } from "@mui/material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
@@ -15,6 +16,7 @@ export default function ProjectCarousel({
   onCategoryChange,
   categoryOptions = ["All", "UI/UX", "Web Development", "Mobile App", "Project Management"],
 }) {
+  const navigate = useNavigate();
   const theme = useTheme();
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -359,9 +361,8 @@ export default function ProjectCarousel({
                       }}
                       style={{ perspective: "900px", transformStyle: "preserve-3d" }}
                       onClick={() => {
-                        const base = window.location.origin;
                         const next = String(realItem.link ?? "").replace(/^\//, "");
-                        window.location.assign(`${base}/projects/${next}`);
+                        navigate(`/projects/${next}`);
                       }}
                     >
                       <MotionBox
@@ -383,9 +384,8 @@ export default function ProjectCarousel({
                         }}
                         onClick={(e) => {
                           e.stopPropagation();
-                          const base = window.location.origin;
                           const next = String(realItem.link ?? "").replace(/^\//, "");
-                          window.location.assign(`${base}/projects/${next}`);
+                          navigate(`/projects/${next}`);
                         }}
                       >
                         <Box
@@ -393,9 +393,8 @@ export default function ProjectCarousel({
                           type="button"
                           onClick={(e) => {
                             e.stopPropagation();
-                            const base = window.location.origin;
                             const next = String(realItem.link ?? "").replace(/^\//, "");
-                            window.location.assign(`${base}/projects/${next}`);
+                            navigate(`/projects/${next}`);
                           }}
                           sx={{
                             appearance: "none",
