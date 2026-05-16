@@ -34,7 +34,7 @@ function TechIconTooltip({ label, iconFile, alt, visibleIconVariants, visibleImg
       >
         <motion.img
           variants={visibleImgVariants}
-          src={`/icons/${iconFile}`}
+          src={`icons/${iconFile}`}
           width={18}
           height={18}
           alt={alt ?? label}
@@ -59,7 +59,7 @@ export default function FurniturePage() {
   return (
     <ProjectLayout>
       <MotionStack spacing={2}>
-        <SlideInImage src="/images/furniture1.png" alt="furniture image1" imgSx={{ height: "30vw", objectFit: "contain" }} />
+        <SlideInImage src="images/furniture1.png" alt="furniture image1" imgSx={{ height: "30vw", objectFit: "contain" }} />
 
         <Stack direction="row" spacing={6} alignItems="center" sx={{ my: 3 }}>
           <Typography variant="body2">January 16, 2025</Typography>
@@ -78,11 +78,11 @@ export default function FurniturePage() {
         <TypewriterText startBullet text={`Material consumption was hard to track because each furniture item requires specific quantities of multiple materials.`} />
         <TypewriterText startBullet text={`Inventory mismatches led to stock uncertainty, delayed production, and restocking happening too late.`} />
         <TypewriterText startBullet text={`Expected material deliveries were not tracked in a structured way, making it harder to plan replenishment and avoid shortages.`} sx={{ pb: 14 }} />
-        <SlideInImage src="/images/furniture2.png" alt="furniture image2" />
+        <SlideInImage src="images/furniture2.png" alt="furniture image2" />
         <TypewriterText text={`The app includes a customer-facing shopping view where customers can browse furniture, check what is available, and place purchases. This creates a smoother buying experience while ensuring the displayed inventory reflects current stock.`} sx={{ pt: 3, pb: 8 }} />
-        <SlideInImage src="/images/furniture3.png" alt="furniture image3" />
+        <SlideInImage src="images/furniture3.png" alt="furniture image3" />
         <TypewriterText text={`The system manages both finished furniture inventory and raw material inventory in one workflow. Each furniture item is linked to its required materials and equivalent costs, so whenever furniture is added or produced, the corresponding material quantities are automatically deducted to keep stock levels accurate and updated.`} sx={{ pt: 3, pb: 8 }} />
-        <SlideInImage src="/images/furniture4.png" alt="furniture image4" />
+        <SlideInImage src="images/furniture4.png" alt="furniture image4" />
         <TypewriterText text={`A dedicated delivery module tracks expected material deliveries and their details, helping staff monitor incoming supplies and schedule replenishment. This makes restocking more predictable and reduces the risk of running out of critical materials during production.`} sx={{ pt: 3, pb: 8 }} />
       </MotionStack>
     </ProjectLayout>

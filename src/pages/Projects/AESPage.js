@@ -34,7 +34,7 @@ function TechIconTooltip({ label, iconFile, alt, visibleIconVariants, visibleImg
         <Box
           component={motion.img}
           variants={visibleImgVariants}
-          src={`/icons/${iconFile}`}
+          src={`icons/${iconFile}`}
           alt={alt ?? label}
           sx={{ width: { xs: 14, lg: 18 }, height: { xs: 14, lg: 18 }, willChange: "transform" }}
         />
@@ -56,7 +56,7 @@ export default function AESPage() {
 
   return (
     <ProjectLayout>
-      <SlideInImage src="/images/aes1.png" alt="aes image1" />
+      <SlideInImage src="images/aes1.png" alt="aes image1" />
 
       <Grid container spacing={{ xs: 2, lg: 2 }} sx={{ my: 3 }}>
         <Grid size={{ xs: 12, lg: 'auto' }} sx={{ order: { xs: 3, lg: 1 }, display: "flex", alignItems: "center" }}>
@@ -83,14 +83,14 @@ export default function AESPage() {
       <TypewriterText startBullet text={`Classroom and subject management required too much manual coordination and repeated data entry.`} />
       <TypewriterText startBullet text={`Enrollment workflows were time-consuming and prone to errors when handled through fragmented tools or paperwork.`} />
       <TypewriterText startBullet text={`Stakeholders like guardians had limited visibility into student progress and academic activities.`} sx={{ pb: 8 }} />
-      <SlideInImage src="/images/aes2.png" alt="aes image2" />
+      <SlideInImage src="images/aes2.png" alt="aes image2" />
       <TypewriterText text={`Users can sign in based on their role as student, teacher, admin, or guardian, ensuring each user sees only the tools and information relevant to them. This improves security, simplifies navigation, and supports clear responsibilities across the university workflow.`} sx={{ pt: 3, pb: 8 }} />
-      <SlideInImage src="/images/aes3.png" alt="aes image3" />
+      <SlideInImage src="images/aes3.png" alt="aes image3" />
       <TypewriterText text={`The platform supports online creation and storage of lessons, modules, and assessments for teachers, while giving students easy access to learning content anytime. This enables consistent learning delivery, centralized content management, and better organization of course requirements.`} sx={{ pt: 3, pb: 8 }} />
-      <SlideInImage src="/images/aes4.png" alt="aes image4" imgSx={{ height: "50vw", objectFit: "contain" }} />
-      <SlideInImage src="/images/aes5.png" alt="aes image5" />
+      <SlideInImage src="images/aes4.png" alt="aes image4" imgSx={{ height: "50vw", objectFit: "contain" }} />
+      <SlideInImage src="images/aes5.png" alt="aes image5" />
       <TypewriterText text={`The system includes a highly customizable assessment maker that allows teachers to build exams, quizzes, and activities based on their subject requirements and grading rules. Teachers can compose assessments using multiple question formats, configure points and scoring per item, set time limits and availability windows, and control retake policies and submission rules. It also supports organizing assessments by module or lesson, making it easier to align evaluations with course pacing, while keeping student submissions and results structured for faster checking and more reliable progress tracking.`} sx={{ pt: 3, pb: 8 }} />
-      <SlideInImage src="/images/aes6.png" alt="aes image6" />
+      <SlideInImage src="images/aes6.png" alt="aes image6" />
       <TypewriterText text={`It includes online classroom and subject management to streamline scheduling, assignments, and course structure. The enrollment system is designed to be seamless and reliable, helping students register efficiently while giving administrators better control over subjects, sections, and academic records.`} sx={{ pt: 3, pb: 8 }} />
     </ProjectLayout>
   );

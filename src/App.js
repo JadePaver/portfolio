@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import MainLayout from './layouts/MainLayout';
 import Home from './pages/Home';
@@ -10,7 +10,7 @@ import GSOPMDPage from './pages/Projects/GSOPMDPage';
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Home />} />
@@ -21,7 +21,7 @@ function App() {
         <Route path="/projects/furniture" element={<FurniturePage />} />
         <Route path="/projects/gso_pmd" element={<GSOPMDPage />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
