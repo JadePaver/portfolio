@@ -462,25 +462,25 @@ export default function Home() {
             {
               title: "Project Management",
               description: "Clear, structured, and results-driven project coordination—from planning to delivery. I ensure transparent communication, smooth workflows, and on-time execution at every stage.",
-              iconSrc: "/icons/pm_icon.svg",
+              iconSrc: `${process.env.PUBLIC_URL}/icons/pm_icon.svg`,
               items: ["bitbucket", "trello", "jira"],
             },
             {
               title: "Web Development",
               description: "With over 6 years of experience in software development, I build fast, high-quality, and scalable web applications. I specialize in modern Node-based frameworks, allowing me to deliver reliable products with clean architecture and excellent performance.",
-              iconSrc: "/icons/web_dev_icon.svg",
+              iconSrc: `${process.env.PUBLIC_URL}/icons/web_dev_icon.svg`,
               items: ["git", "github", "vscode", "laravel", "nodejs", "react", "typescript"],
             },
             {
               title: "Mobile App",
               description: "I build mobile applications using Dart and Flutter, delivering fast, dynamic, and fully cross-platform apps. With experience in developing six mobile projects, I take advantage of Flutter's performance optimized down to near assembly speed to create smooth, high-quality user experiences on both iOS and Android.",
-              iconSrc: "/icons/mobile_dev_icon.svg",
+              iconSrc: `${process.env.PUBLIC_URL}/icons/mobile_dev_icon.svg`,
               items: ["dart", "supabase", "android_studio"],
             },
             {
               title: "UI/UX",
               description: "I design intuitive and user-centered interfaces to guide the entire development process. Using modern Figma workflows, I plan and visualize the product's structure, ensuring clarity, transparency, and alignment with client goals. This allows me to communicate ideas effectively and deliver designs that are both practical and visually engaging.",
-              iconSrc: "/icons/design_icon.svg",
+              iconSrc: `${process.env.PUBLIC_URL}/icons/design_icon.svg`,
               items: ["figma"],
             },
           ].map((service) => (

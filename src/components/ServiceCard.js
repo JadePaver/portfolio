@@ -9,7 +9,7 @@ const MotionTypography = motion(Typography);
 export default function ServiceCard({
   title,
   description,
-  iconSrc = "/icons/pm_icon.svg",
+  iconSrc = `${process.env.PUBLIC_URL}/icons/pm_icon.svg`,
   items = ["git", "github", "vscode", "laravel", "nodejs", "react", "typescript"],
   width = "265px",
   height = "320px",
@@ -134,7 +134,7 @@ export default function ServiceCard({
         <Stack direction="row" justifyContent="space-between" alignItems="flex-end" spacing='auto' sx={{ width: "100%" }}>
           <Box
             component="img"
-            src={iconSrc}
+            src={iconSrc.startsWith("http") || iconSrc.startsWith(process.env.PUBLIC_URL) ? iconSrc : `${process.env.PUBLIC_URL}${iconSrc}`}
             alt={`${title ?? "Service"} Icon`}
             sx={{ height: iconHeight, width: "auto", maxWidth: "100%", display: "block" }}
           />

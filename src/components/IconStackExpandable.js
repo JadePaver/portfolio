@@ -120,7 +120,7 @@ function IconRow({ icon, index, activeIndex, isClosing }) {
         }}
       >
         <motion.img
-          src={`/icons/${icon}.svg`}
+          src={`${process.env.PUBLIC_URL}/icons/${icon}.svg`}
           width={18}
           height={18}
           alt={icon}
@@ -288,7 +288,7 @@ export default function IconStackExpandable({ items }) {
             >
               <motion.img
                 variants={visibleImgVariants}
-                src={`/icons/${icon}.svg`}
+                src={`${process.env.PUBLIC_URL}/icons/${icon}.svg`}
                 width={18}
                 height={18}
                 alt={icon}
