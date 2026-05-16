@@ -21,11 +21,11 @@ export default function Home() {
   );
 
   const [items] = useState([
-    { title: "Ledger App", color: "#F97B0C", image: "/projects/ledger.png", category: ['UI/UX', 'Mobile App', 'Project Management'], link: "/ledger" },
-    { title: "Pasabay", color: "#6C5CE7", image: "/projects/pasabay.png", category: ['Mobile App', 'UI/UX', 'Project Management'], link: "/pasabay" },
-    { title: "Advanced Education System (AES)", color: "#00B894", image: "/projects/aes.png", category: ['UI/UX', 'Web Development', 'Project Management'], link: "/aes" },
-    { title: "Property Department Management System", color: "#6DD5FA", image: "/projects/gso_pmd.png", category: ['Web Development', 'Project Management', 'UI/UX'], link: "/gso_pmd" },
-    { title: "Butch Furniture (POS)", color: "#1DD1A1", image: "/projects/furniture.png", category: ['Web Development', 'UI/UX', 'Project Management'], link: "/furniture" },
+    { title: "Ledger App", color: "#F97B0C", image: `${process.env.PUBLIC_URL}/projects/ledger.png`, category: ['UI/UX', 'Mobile App', 'Project Management'], link: "/ledger" },
+    { title: "Pasabay", color: "#6C5CE7", image: `${process.env.PUBLIC_URL}/projects/pasabay.png`, category: ['Mobile App', 'UI/UX', 'Project Management'], link: "/pasabay" },
+    { title: "Advanced Education System (AES)", color: "#00B894", image: `${process.env.PUBLIC_URL}/projects/aes.png`, category: ['UI/UX', 'Web Development', 'Project Management'], link: "/aes" },
+    { title: "Property Department Management System", color: "#6DD5FA", image: `${process.env.PUBLIC_URL}/projects/gso_pmd.png`, category: ['Web Development', 'Project Management', 'UI/UX'], link: "/gso_pmd" },
+    { title: "Butch Furniture (POS)", color: "#1DD1A1", image: `${process.env.PUBLIC_URL}/projects/furniture.png`, category: ['Web Development', 'UI/UX', 'Project Management'], link: "/furniture" },
   ]);
 
   const handleCategoryChange = (val) => {
