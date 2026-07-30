@@ -17,6 +17,9 @@ export default function ServiceCard({
   iconHeight = 50,
   hoverExtra = 32,
   hoverBottomExtra = 16,
+  cardBg = "#F8F8F8",
+  titleColor,
+  descColor,
 }) {
   const contentRef = useRef(null);
   const [hovered, setHovered] = useState(false);
@@ -104,7 +107,7 @@ export default function ServiceCard({
       }}
       sx={{
         position: "relative",
-        bgcolor: "#F8F8F8",
+        bgcolor: cardBg,
         borderRadius: "1rem",
         width,
         height: `${collapsedHeight}px`,
@@ -131,7 +134,7 @@ export default function ServiceCard({
       />
 
       <Box ref={contentRef} sx={{ display: "flow-root" }}>
-        <Stack direction="row" justifyContent="space-between" alignItems="flex-end" spacing='auto' sx={{ width: "100%" }}>
+        <Stack direction="row" spacing='auto' sx={{ justifyContent: "space-between", alignItems: "flex-end", width: "100%" }}>
           <Box
             component="img"
             src={iconSrc.startsWith("http") || iconSrc.startsWith(process.env.PUBLIC_URL) ? iconSrc : `${process.env.PUBLIC_URL}${iconSrc}`}
@@ -148,7 +151,7 @@ export default function ServiceCard({
             fontWeight={700}
             variant="h6"
             gutterBottom
-            sx={{ textAlign: "left", mt: 3, WebkitFontSmoothing: "antialiased" }}
+            sx={{ textAlign: "left", mt: 3, WebkitFontSmoothing: "antialiased", ...(titleColor ? { color: titleColor } : {}) }}
             animate={{ y: hovered ? -1 : 0, scale: hovered ? 1.002 : 1 }}
             transition={{ type: "spring", stiffness: 160, damping: 18 }}
           >
@@ -170,6 +173,7 @@ export default function ServiceCard({
               WebkitBoxOrient: "vertical",
               overflow: "hidden",
               wordBreak: "break-word",
+              ...(descColor ? { color: descColor } : {}),
             }}
             animate={{ y: hovered ? 0 : 4, opacity: 1 }}
             transition={{ duration: 0.28, ease: cubicEase }}

@@ -1,97 +1,143 @@
 import ProjectLayout from "../../layouts/ProjectLayout";
-import { Typography, Box, Stack, Tooltip, Grid } from "@mui/material";
-import { motion } from "framer-motion";
+import { Typography, Box, Stack, Chip } from "@mui/material";
 import { SlideInImage } from "../../components/SlideInImage";
 import { TypewriterText } from "../../components/TypewriterText";
-
-const MotionBox = motion(Box);
-
-function TechIconTooltip({ label, iconFile, alt, visibleIconVariants, visibleImgVariants }) {
-  return (
-    <Tooltip
-      title={<Typography fontFamily="Poppins" fontSize={13}>{label}</Typography>}
-      arrow
-      placement="top"
-      enterDelay={150}
-      leaveDelay={50}
-    >
-      <MotionBox
-        variants={visibleIconVariants}
-        initial="rest"
-        animate="rest"
-        whileHover="hover"
-        sx={{
-          bgcolor: "white",
-          width: { xs: 22, lg: 30 },
-          height: { xs: 22, lg: 30 },
-          borderRadius: "100px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          cursor: "pointer",
-        }}
-      >
-        <Box
-          component={motion.img}
-          variants={visibleImgVariants}
-          src={`${process.env.PUBLIC_URL}/icons/${iconFile}`}
-          alt={alt ?? label}
-          sx={{ width: { xs: 14, lg: 18 }, height: { xs: 14, lg: 18 }, willChange: "transform" }}
-        />
-      </MotionBox>
-    </Tooltip>
-  );
-}
+import {
+  TechIconTooltip,
+  SectionHeading,
+  projectTechIconVariants as visibleIconVariants,
+  projectTechImgVariants as visibleImgVariants,
+} from "../../components/ProjectPageHelpers";
 
 export default function AESPage() {
-  const visibleIconVariants = {
-    rest: { scale: 1, y: 0, boxShadow: "1px 2px 6px rgba(0,0,0,0.25)" },
-    hover: { scale: 1.08, y: -2, boxShadow: "0px 6px 14px rgba(0,0,0,0.18)", transition: { type: "spring", stiffness: 400, damping: 22 } },
-  };
-
-  const visibleImgVariants = {
-    rest: { scale: 1, rotate: 0, y: 0 },
-    hover: { scale: 1.14, rotate: 3, y: -1, transition: { type: "spring", stiffness: 500, damping: 22 } },
-  };
-
   return (
-    <ProjectLayout>
-      <SlideInImage src={`${process.env.PUBLIC_URL}/images/aes1.png`} alt="aes image1" />
+    <ProjectLayout title="AES — Advanced Educational Smart System">
+      {/* Hero Image */}
+      <SlideInImage
+        eager
+        src={`${process.env.PUBLIC_URL}/images/aes1.png`}
+        alt="aes image1"
+        containerSx={{ borderRadius: 3, mb: 0, bgcolor: "grey.50", boxShadow: "0 4px 28px rgba(0,0,0,0.08)" }}
+        imgSx={{ maxHeight: "60vh", objectFit: "contain", mx: "auto" }}
+      />
 
-      <Grid container spacing={{ xs: 2, lg: 2 }} sx={{ my: 3 }}>
-        <Grid size={{ xs: 12, lg: 'auto' }} sx={{ order: { xs: 3, lg: 1 }, display: "flex", alignItems: "center" }}>
-          <Typography variant="body2" sx={{ fontSize: { xs: "0.75rem", lg: "1rem" } }}>January 16, 2025</Typography>
-        </Grid>
-        <Grid size={{ xs: 4, lg: 'auto' }} sx={{ order: { xs: 2, lg: 2 } }}>
-          <Stack direction="row" spacing={2} justifyContent="center">
-            <TechIconTooltip label="MUI" iconFile="mui.svg" alt="mui" visibleIconVariants={visibleIconVariants} visibleImgVariants={visibleImgVariants} />
-            <TechIconTooltip label="React" iconFile="react.svg" alt="react" visibleIconVariants={visibleIconVariants} visibleImgVariants={visibleImgVariants} />
-            <TechIconTooltip label="Node JS" iconFile="nodejs.svg" alt="nodejs" visibleIconVariants={visibleIconVariants} visibleImgVariants={visibleImgVariants} />
-            <TechIconTooltip label="TypeScript" iconFile="typescript.svg" alt="typescript" visibleIconVariants={visibleIconVariants} visibleImgVariants={visibleImgVariants} />
-          </Stack>
-        </Grid>
-        <Grid size={{ xs: 8, lg: 'auto' }} sx={{ order: { xs: 1, lg: 3 }, display: "flex", alignItems: "center" }}>
-          <Typography variant="body2" sx={{ color: "primary.main", fontSize: { xs: "0.80rem", lg: "1rem" }, textAlign: "left" }}>
-            UI/UX, Web Development, Project Management
-          </Typography>
-        </Grid>
-      </Grid>
+      {/* Project Title */}
+      <Typography
+        variant="h3"
+        sx={{
+          fontFamily: "Poppins, sans-serif",
+          fontWeight: 800,
+          fontSize: { xs: "1.6rem", lg: "2.4rem" },
+          lineHeight: 1.15,
+          mt: 4,
+          mb: 0.5,
+          color: "text.primary",
+        }}
+      >
+        AES — Advanced Educational Smart System
+      </Typography>
 
-      <TypewriterText text={`Advance Educational Smart System is an online learning platform designed for university use, supporting multiple roles such as students, teachers, administrators, and guardians. It centralizes academic content, classroom workflows, and enrollment processes into one system to make learning management more organized, accessible, and efficient.`} sx={{ pt: 4 }} />
-      <TypewriterText fontWeight={1000} text={`Context / Problem`} sx={{ pt: 4 }} />
-      <TypewriterText startBullet text={`Learning materials, modules, and assessments were not stored in a single structured platform, making access and tracking inconsistent.`} sx={{ pt: 2 }} />
-      <TypewriterText startBullet text={`Classroom and subject management required too much manual coordination and repeated data entry.`} />
-      <TypewriterText startBullet text={`Enrollment workflows were time-consuming and prone to errors when handled through fragmented tools or paperwork.`} />
-      <TypewriterText startBullet text={`Stakeholders like guardians had limited visibility into student progress and academic activities.`} sx={{ pb: 8 }} />
-      <SlideInImage src={`${process.env.PUBLIC_URL}/images/aes2.png`} alt="aes image2" />
-      <TypewriterText text={`Users can sign in based on their role as student, teacher, admin, or guardian, ensuring each user sees only the tools and information relevant to them. This improves security, simplifies navigation, and supports clear responsibilities across the university workflow.`} sx={{ pt: 3, pb: 8 }} />
-      <SlideInImage src={`${process.env.PUBLIC_URL}/images/aes3.png`} alt="aes image3" />
-      <TypewriterText text={`The platform supports online creation and storage of lessons, modules, and assessments for teachers, while giving students easy access to learning content anytime. This enables consistent learning delivery, centralized content management, and better organization of course requirements.`} sx={{ pt: 3, pb: 8 }} />
-      <SlideInImage src={`${process.env.PUBLIC_URL}/images/aes4.png`} alt="aes image4" imgSx={{ height: "50vw", objectFit: "contain" }} />
-      <SlideInImage src={`${process.env.PUBLIC_URL}/images/aes5.png`} alt="aes image5" />
-      <TypewriterText text={`The system includes a highly customizable assessment maker that allows teachers to build exams, quizzes, and activities based on their subject requirements and grading rules. Teachers can compose assessments using multiple question formats, configure points and scoring per item, set time limits and availability windows, and control retake policies and submission rules. It also supports organizing assessments by module or lesson, making it easier to align evaluations with course pacing, while keeping student submissions and results structured for faster checking and more reliable progress tracking.`} sx={{ pt: 3, pb: 8 }} />
-      <SlideInImage src={`${process.env.PUBLIC_URL}/images/aes6.png`} alt="aes image6" />
-      <TypewriterText text={`It includes online classroom and subject management to streamline scheduling, assignments, and course structure. The enrollment system is designed to be seamless and reliable, helping students register efficiently while giving administrators better control over subjects, sections, and academic records.`} sx={{ pt: 3, pb: 8 }} />
+      {/* Meta row */}
+      <Box sx={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 1, mt: 1.5, pb: 3, borderBottom: "1px solid rgba(0,0,0,0.07)" }}>
+        {["UI/UX", "Web Development", "Project Management"].map((cat) => (
+          <Chip
+            key={cat}
+            label={cat}
+            size="small"
+            sx={{
+              bgcolor: "rgba(253,111,0,0.08)",
+              color: "primary.main",
+              fontFamily: "Poppins, sans-serif",
+              fontWeight: 600,
+              fontSize: "0.72rem",
+              border: "1px solid rgba(253,111,0,0.2)",
+              height: 26,
+            }}
+          />
+        ))}
+        <Box sx={{ width: 5, height: 5, borderRadius: "50%", bgcolor: "rgba(0,0,0,0.15)", mx: 0.5 }} />
+        <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
+          <TechIconTooltip label="MUI" iconFile="mui.svg" alt="mui" visibleIconVariants={visibleIconVariants} visibleImgVariants={visibleImgVariants} />
+          <TechIconTooltip label="React" iconFile="react.svg" alt="react" visibleIconVariants={visibleIconVariants} visibleImgVariants={visibleImgVariants} />
+          <TechIconTooltip label="Node JS" iconFile="nodejs.svg" alt="nodejs" visibleIconVariants={visibleIconVariants} visibleImgVariants={visibleImgVariants} />
+          <TechIconTooltip label="TypeScript" iconFile="typescript.svg" alt="typescript" visibleIconVariants={visibleIconVariants} visibleImgVariants={visibleImgVariants} />
+        </Stack>
+        <Typography variant="caption" sx={{ ml: "auto", color: "text.secondary", fontFamily: "Poppins, sans-serif", fontSize: { xs: "0.72rem", lg: "0.82rem" } }}>
+          January 16, 2025
+        </Typography>
+      </Box>
+
+      {/* Intro */}
+      <TypewriterText
+        highlightFirstWord
+        text={`Advance Educational Smart System is an online learning platform designed for university use, supporting multiple roles such as students, teachers, administrators, and guardians. It centralizes academic content, classroom workflows, and enrollment processes into one system to make learning management more organized, accessible, and efficient.`}
+        sx={{ pt: 4, lineHeight: 1.9, fontSize: { xs: "0.85rem", lg: "1rem" } }}
+      />
+
+      {/* Context / Problem */}
+      <SectionHeading text="Context / Problem" />
+      <Box sx={{ mt: 1.5, pl: 1.5, borderLeft: "3px solid rgba(253,111,0,0.22)", display: "flex", flexDirection: "column", gap: 0.5 }}>
+        <TypewriterText startBullet text={`Learning materials, modules, and assessments were not stored in a single structured platform, making access and tracking inconsistent.`} sx={{ pt: 1, fontSize: { xs: "0.85rem", lg: "0.95rem" } }} />
+        <TypewriterText startBullet text={`Classroom and subject management required too much manual coordination and repeated data entry.`} sx={{ fontSize: { xs: "0.85rem", lg: "0.95rem" } }} />
+        <TypewriterText startBullet text={`Enrollment workflows were time-consuming and prone to errors when handled through fragmented tools or paperwork.`} sx={{ fontSize: { xs: "0.85rem", lg: "0.95rem" } }} />
+        <TypewriterText startBullet text={`Stakeholders like guardians had limited visibility into student progress and academic activities.`} sx={{ pb: 1, fontSize: { xs: "0.85rem", lg: "0.95rem" } }} />
+      </Box>
+
+      <Box sx={{ mt: 6 }}>
+        <SlideInImage
+          src={`${process.env.PUBLIC_URL}/images/aes2.png`}
+          alt="aes image2"
+          containerSx={{ borderRadius: 3, mb: 0, boxShadow: "0 4px 28px rgba(0,0,0,0.08)" }}
+        />
+      </Box>
+      <TypewriterText
+        text={`Users can sign in based on their role as student, teacher, admin, or guardian, ensuring each user sees only the tools and information relevant to them. This improves security, simplifies navigation, and supports clear responsibilities across the university workflow.`}
+        sx={{ pt: 3, pb: 2, lineHeight: 1.9, fontSize: { xs: "0.85rem", lg: "1rem" } }}
+      />
+
+      <Box sx={{ mt: 4 }}>
+        <SlideInImage
+          src={`${process.env.PUBLIC_URL}/images/aes3.png`}
+          alt="aes image3"
+          containerSx={{ borderRadius: 3, mb: 0, boxShadow: "0 4px 28px rgba(0,0,0,0.08)" }}
+        />
+      </Box>
+      <TypewriterText
+        text={`The platform supports online creation and storage of lessons, modules, and assessments for teachers, while giving students easy access to learning content anytime. This enables consistent learning delivery, centralized content management, and better organization of course requirements.`}
+        sx={{ pt: 3, pb: 2, lineHeight: 1.9, fontSize: { xs: "0.85rem", lg: "1rem" } }}
+      />
+
+      <Box sx={{ mt: 4 }}>
+        <SlideInImage
+          src={`${process.env.PUBLIC_URL}/images/aes4.png`}
+          alt="aes image4"
+          containerSx={{ borderRadius: 3, mb: 0, bgcolor: "grey.50", boxShadow: "0 4px 28px rgba(0,0,0,0.08)" }}
+          imgSx={{ maxHeight: "55vh", objectFit: "contain", mx: "auto" }}
+        />
+      </Box>
+      <Box sx={{ mt: 2 }}>
+        <SlideInImage
+          src={`${process.env.PUBLIC_URL}/images/aes5.png`}
+          alt="aes image5"
+          containerSx={{ borderRadius: 3, mb: 0, boxShadow: "0 4px 28px rgba(0,0,0,0.08)" }}
+        />
+      </Box>
+      <TypewriterText
+        text={`The system includes a highly customizable assessment maker that allows teachers to build exams, quizzes, and activities based on their subject requirements and grading rules. Teachers can compose assessments using multiple question formats, configure points and scoring per item, set time limits and availability windows, and control retake policies and submission rules. It also supports organizing assessments by module or lesson, making it easier to align evaluations with course pacing, while keeping student submissions and results structured for faster checking and more reliable progress tracking.`}
+        sx={{ pt: 3, pb: 2, lineHeight: 1.9, fontSize: { xs: "0.85rem", lg: "1rem" } }}
+      />
+
+      <Box sx={{ mt: 4 }}>
+        <SlideInImage
+          src={`${process.env.PUBLIC_URL}/images/aes6.png`}
+          alt="aes image6"
+          containerSx={{ borderRadius: 3, mb: 0, boxShadow: "0 4px 28px rgba(0,0,0,0.08)" }}
+        />
+      </Box>
+      <TypewriterText
+        text={`It includes online classroom and subject management to streamline scheduling, assignments, and course structure. The enrollment system is designed to be seamless and reliable, helping students register efficiently while giving administrators better control over subjects, sections, and academic records.`}
+        sx={{ pt: 3, pb: 10, lineHeight: 1.9, fontSize: { xs: "0.85rem", lg: "1rem" } }}
+      />
     </ProjectLayout>
   );
 }

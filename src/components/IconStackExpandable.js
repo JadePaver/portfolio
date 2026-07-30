@@ -97,8 +97,7 @@ function IconRow({ icon, index, activeIndex, isClosing }) {
     <Stack
       direction="row"
       spacing={1}
-      alignItems="center"
-      sx={{ willChange: "transform, opacity", cursor: "pointer", userSelect: "none" }}
+      sx={{ alignItems: "center", willChange: "transform, opacity", cursor: "pointer", userSelect: "none" }}
       onMouseEnter={handleHoverStart}
       onMouseLeave={handleHoverEnd}
     >
@@ -274,7 +273,6 @@ export default function IconStackExpandable({ items }) {
               initial="rest"
               animate="rest"
               whileHover="hover"
-              onClick={() => { console.log(`${icon} icon clicked`); }}
               sx={{
                 bgcolor: "white",
                 width: "30px",
@@ -283,7 +281,6 @@ export default function IconStackExpandable({ items }) {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                cursor: "pointer",
               }}
             >
               <motion.img

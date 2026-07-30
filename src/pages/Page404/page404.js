@@ -62,8 +62,6 @@ const Page404 = () => {
     return (<>
         <Grid
             container
-            rowGap={0}
-            columnGap={0}
             size={{ xs: 12, md: 12 }}
             sx={{
                 width: "100vw",
@@ -79,15 +77,14 @@ const Page404 = () => {
             <Grid size={{ xs: 12, md: 12 }} >
                 <Stack
                     direction={{ xs: "column", md: "row" }}
-                    justifyContent="center"
-                    alignItems="center"
+                    sx={{ justifyContent: "center", alignItems: "center" }}
                 >
                     <MotionIcon
                         variants={rollInIcon}
                         initial="hidden"
                         animate="visible"
                         exit="hidden"
-                        sx={{ fontSize: "20rem" }}
+                        sx={{ fontSize: { xs: "7rem", md: "20rem" } }}
                         color="primary"
                     />
                     <MotionTypography
@@ -97,10 +94,11 @@ const Page404 = () => {
                         custom={1}
                         color="primary"
                         sx={{
-                            fontSize: { xs: "5rem", md: "10rem" },
+                            fontFamily: "Poppins, sans-serif",
+                            fontSize: { xs: "3rem", md: "10rem" },
                             fontWeight: 600,
                             lineHeight: 1,
-                            ml: 2,
+                            ml: { xs: 0, md: 2 },
                         }}
                     >
                         404 PAGE
@@ -138,8 +136,24 @@ const Page404 = () => {
                     animate="visible"
                     custom={4}
                 >
-                    <Button variant="outlined" autoFocus onClick={() => navigate("/")}>
-                        Redirect Me
+                    <Button
+                        variant="contained"
+                        disableElevation
+                        autoFocus
+                        onClick={() => navigate("/")}
+                        sx={{
+                            color: "white",
+                            fontFamily: "Poppins, sans-serif",
+                            fontWeight: 700,
+                            textTransform: "none",
+                            borderRadius: "50px",
+                            px: "1.6rem",
+                            py: "0.6rem",
+                            background: "linear-gradient(135deg, #FD6F00 0%, #ff3d6e 100%)",
+                            "&:hover": { background: "linear-gradient(135deg, #FD6F00 0%, #ff3d6e 100%)" },
+                        }}
+                    >
+                        Take Me Home
                     </Button>
                 </motion.div>
             </Grid>

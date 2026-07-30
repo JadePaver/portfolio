@@ -40,58 +40,57 @@ export function ExtrudeAllText({
     hover: { opacity: 1, transition: { duration: 0.08, ease: "linear" } },
   };
 
+  const words = text.split(" ");
+
   return (
     <MotionTypography
       variant={variant}
-      fontWeight={fontWeight}
       fontSize={fontSize}
-      sx={{ color, display: "inline-block", ...sx }}
+      sx={{ color, fontWeight, display: "inline-block", ...sx }}
       variants={container}
       initial="rest"
       animate="rest"
       whileHover="hover"
       transition={{ duration: exitDuration, ease: [0.16, 1, 0.3, 1] }}
     >
-      {Array.from(text).map((ch, i) => {
-        const c = ch === " " ? "\u00A0" : ch;
-        return (
-          <span
-            key={`${ch}-${i}`}
-            style={{
-              position: "relative",
-              display: "inline-block",
-              whiteSpace: ch === " " ? "pre" : "normal",
-            }}
-          >
-            <motion.span
-              aria-hidden
-              variants={baseChar}
-              style={{
-                position: "absolute",
-                left: 0,
-                top: 0,
-                color: resolvedBaseColor,
-                zIndex: 0,
-                pointerEvents: "none",
-              }}
+      {words.map((word, wi) => (
+        <span key={`w-${wi}`} style={{ display: "inline-block", whiteSpace: "nowrap" }}>
+          {Array.from(word).map((ch, i) => (
+            <span
+              key={`${wi}-${i}`}
+              style={{ position: "relative", display: "inline-block" }}
             >
-              {c}
-            </motion.span>
-            <motion.span
-              variants={faceChar}
-              style={{
-                position: "relative",
-                zIndex: 1,
-                display: "inline-block",
-                willChange: "transform",
-                transformOrigin: "left bottom",
-              }}
-            >
-              {c}
-            </motion.span>
-          </span>
-        );
-      })}
+              <motion.span
+                aria-hidden
+                variants={baseChar}
+                style={{
+                  position: "absolute",
+                  left: 0,
+                  top: 0,
+                  color: resolvedBaseColor,
+                  zIndex: 0,
+                  pointerEvents: "none",
+                }}
+              >
+                {ch}
+              </motion.span>
+              <motion.span
+                variants={faceChar}
+                style={{
+                  position: "relative",
+                  zIndex: 1,
+                  display: "inline-block",
+                  willChange: "transform",
+                  transformOrigin: "left bottom",
+                }}
+              >
+                {ch}
+              </motion.span>
+            </span>
+          ))}
+          {wi < words.length - 1 ? " " : null}
+        </span>
+      ))}
     </MotionTypography>
   );
 }

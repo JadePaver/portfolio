@@ -205,17 +205,15 @@ export default function ProjectCarousel({
         userSelect: "none",
         perspective: "1200px",
         transformStyle: "preserve-3d",
-        overflowX: "hidden",
       }}
     >
       <Stack spacing={2} sx={{ alignItems: "center", px: 2 }}>
-        <Typography
+        {/* <Typography
           variant="h6"
-          fontWeight={700}
-          sx={{ fontFamily: "Poppins, sans-serif", userSelect: "none", textAlign: "center" }}
+          sx={{ fontFamily: "Poppins, sans-serif", fontWeight: 800, userSelect: "none", textAlign: "center" }}
         >
           {title}
-        </Typography>
+        </Typography> */}
         <ProjectCategoryButtons
           value={categoryValue}
           onChange={(val) => { onCategoryChange?.(val); }}
