@@ -7,6 +7,7 @@ import HeroPortrait from "../components/design/HeroPortrait";
 import AboutStage from "../components/design/AboutStage";
 import ToolCloud from "../components/design/ToolCloud";
 import Milestones from "../components/design/Milestones";
+import ProcessStudio from "../components/design/ProcessStudio";
 import ProjectsGrid from "../components/ProjectsGrid";
 import { color, font, shell, EASE_CSS } from "../components/design/tokens";
 import { site, socials } from "../components/design/site";
@@ -320,27 +321,49 @@ const SERVICES = [
   },
 ];
 
+// `lede` is the one-line promise the step rail is summarising; `body` is what
+// that actually costs and why it is worth it, and `out` is the artefact the
+// client is holding when the step closes.
 const PROCESS = [
   {
     n: "01",
     title: "Discover",
-    body: "One call to define the outcome, the constraints, and what success looks like in numbers.",
+    hint: "Week 0",
+    dur: "2–3 days",
+    art: "brief",
+    lede: "One call to define the outcome, the constraints, and what success looks like in numbers.",
+    body: "I ask what breaks today, who it hurts, and what has to be true for this to be worth building. Anything we cannot measure gets cut before it reaches an estimate.",
+    out: ["Scope note", "Success metrics", "Fixed quote"],
   },
   {
     n: "02",
     title: "Architect",
-    body: "Data model, API contracts, and screen flows agreed before a line of feature code exists.",
+    hint: "Week 1",
+    dur: "About one week",
+    art: "blueprint",
+    lede: "Data model, API contracts, and screen flows agreed before a line of feature code exists.",
+    body: "Schema, endpoints, and screen states on paper first. Moving a table here costs an afternoon; migrating one in month three costs a sprint.",
+    out: ["Schema diagram", "API contract", "Screen flows"],
   },
   {
     n: "03",
     title: "Build",
-    body: "Two-week increments, each ending in something you can click, with a written changelog.",
+    hint: "Weeks 2+",
+    dur: "Two-week increments",
+    art: "sprints",
+    lede: "Two-week increments, each ending in something you can click, with a written changelog.",
+    body: "Every increment lands on staging with a demo and notes on what changed. You steer at each checkpoint instead of waiting for a reveal at the end.",
+    out: ["Staging build", "Changelog", "Demo call"],
   },
   {
     n: "04",
     title: "Ship & support",
-    body: "Release, monitor, hand over documentation, and stay reachable after launch.",
-    last: true,
+    hint: "Launch",
+    dur: "30 days after launch",
+    art: "launch",
+    lede: "Release, monitor, hand over documentation, and stay reachable after launch.",
+    body: "Release behind a checklist, watch the first week of real traffic, then hand over documentation your own team can run with.",
+    out: ["Release", "Handover docs", "30-day support"],
   },
 ];
 
@@ -1190,80 +1213,14 @@ export default function Home() {
           <Reveal>
             <Eyebrow number="04">How I work</Eyebrow>
           </Reveal>
-          <Reveal
-            component="h2"
-            delay={0.06}
-            duration={0.85}
-            y={20}
-            sx={{ ...headingSx, mt: "18px", maxWidth: "22ch" }}
-          >
-            Four steps, no surprises
-          </Reveal>
-
-          <Box
-            sx={{
-              mt: "clamp(36px, 5vw, 56px)",
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(min(230px, 100%), 1fr))",
-              gap: "1px",
-              bgcolor: color.line,
-              border: `1px solid ${color.line}`,
-              borderRadius: "16px",
-              overflow: "hidden",
-            }}
-          >
-            {PROCESS.map(({ n, title, body, last }, i) => (
-              <Reveal
-                key={n}
-                delay={i * 0.06}
-                y={20}
-                sx={{
-                  bgcolor: color.bgAlt,
-                  p: "30px 24px",
-                  minHeight: 210,
-                  display: "flex",
-                  flexDirection: "column",
-                  borderLeft: last ? `2px solid ${color.accent}` : "none",
-                }}
-              >
-                <Box
-                  sx={{
-                    fontSize: "44px",
-                    fontWeight: 800,
-                    letterSpacing: "-.05em",
-                    color: last ? "rgba(255,106,26,.32)" : "rgba(255,255,255,.1)",
-                    lineHeight: 1,
-                  }}
-                >
-                  {n}
-                </Box>
-                <Box
-                  component="h3"
-                  sx={{
-                    m: "14px 0 0",
-                    fontSize: "18px",
-                    fontWeight: 700,
-                    letterSpacing: "-.02em",
-                    color: color.title,
-                  }}
-                >
-                  {title}
-                </Box>
-                <Box
-                  component="p"
-                  sx={{
-                    m: "8px 0 0",
-                    fontSize: "14px",
-                    lineHeight: 1.6,
-                    color: color.muted,
-                    textWrap: "pretty",
-                  }}
-                >
-                  {body}
-                </Box>
-              </Reveal>
-            ))}
-          </Box>
+          <ProcessStudio
+            steps={PROCESS}
+            title={
+              <Box component="h2" sx={{ ...headingSx, maxWidth: "22ch" }}>
+                Four steps, no surprises
+              </Box>
+            }
+          />
         </Box>
       </Box>
 

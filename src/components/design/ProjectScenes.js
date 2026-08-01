@@ -997,29 +997,30 @@ function AspentechScene({ c, t, anim, still }) {
  * The ICTD machine — one repair item's book-in / book-out lifecycle on a
  * single 12s clock.
  *
- * The left chip is the asset's live telemetry: a heartbeat trace that
- * never stops scrolling. The right chip is the custody log — the cover's
- * own "Asset & Custody" language made physical: two slots, OWNER and
- * ICTD, with the asset's tag seated in one. The fault cuts the trace to
- * an amber flatline; the item books in — an amber light runs the card's
- * border down to the custody desk and the tag slides across, clamped by
- * the ICTD slot; the bench works (the LED blinks); the repair lands and
- * the trace snaps back to life; the item books out — the tag slides home
- * and the same light, green now, finishes the lap back to the telemetry
- * chip. The rail streak is the one piece of shared scene infrastructure
- * here, and it is used as a custody chain: one lap per cycle, departing
- * amber (faulted) and arriving green (repaired), so the light itself
- * carries the repair state rather than just marking a route.
+ * The left chip is the unit's subsystem board — ten cells the desk's
+ * diagnostic actually tests — and a sweep line that walks it. The right
+ * chip is the custody log — the cover's own "Asset & Custody" language
+ * made physical: two slots, OWNER and ICTD, with the asset's tag seated
+ * in one. The sweep runs the board and stops dead on the subsystem that
+ * fails; the item books in — an amber light runs the card's border down
+ * to the custody desk and the tag slides across, clamped by the ICTD
+ * slot; the bench works (the faulted cell blinks); the repair clears it
+ * and the sweep resumes from exactly where it stopped to finish the
+ * retest; the item books out — the tag slides home and the same light,
+ * green now, finishes the lap back to the diagnostics chip. The rail
+ * streak is the one piece of shared scene infrastructure here, and it is
+ * used as a custody chain: one lap per cycle, departing amber (faulted)
+ * and arriving green (repaired), so the light itself carries the repair
+ * state rather than just marking a route.
  *
  * The beat percentages live with the jp-ictd-* keyframes in index.css.
- * The rail is traced counter-clockwise from the telemetry chip with
- * pathLength 100; stations sit at path units 0 (telemetry, left edge at
- * y 22) and 64.5 (custody, right edge at y 20) — move a chip and those
- * constants move with it. The tag's 32px slide in jp-ictd-tag is one
- * slot step (26px slot + 6px gap), and the trace ribbon is sixteen 15px
- * heartbeats scrolled −165px (eleven beats, ≈55bpm) per cycle, which
- * keeps the 66px window covered at both ends so the loop has no seam —
- * keep all three in step.
+ * The rail is traced counter-clockwise from the diagnostics chip with
+ * pathLength 100; stations sit at path units 0 (diagnostics, left edge
+ * at y 22) and 64.5 (custody, right edge at y 20) — move a chip and
+ * those constants move with it. The tag's 32px slide in jp-ictd-tag is
+ * one slot step (26px slot + 6px gap), and the sweep's translateX stops
+ * in jp-ictd-scan are the board's own column centres (5/18/31/44/57 in
+ * a 62px board) — keep all three in step.
  *
  * Everything is tuned to the ICTD cover: green-black glass, the cover's
  * deep green (#1E8050 via the project tint) in borders and the tag, its
@@ -1029,7 +1030,7 @@ function AspentechScene({ c, t, anim, still }) {
  */
 const ICTD_BEAT = 12;
 
-// Counter-clockwise from the telemetry chip at 22% of the left edge.
+// Counter-clockwise from the diagnostics chip at 22% of the left edge.
 const ICTD_RAIL = "M 0 22 L 0 100 L 100 100 L 100 0 L 0 0 L 0 22";
 
 // The cover's OPERATIONAL dot green, and its traffic-light amber
@@ -1041,11 +1042,12 @@ const ICTD_AMBER = "#F2B94B";
 // with its mint (#3BE0B0) and Pasabay with its amber (#FFC94A).
 const ICTD_LABEL = "#57C287";
 
-// One heartbeat: a 15px-wide QRS complex on a baseline of y 15. Sixteen
-// make a 240px ribbon, which stays wider than the 66px window across the
-// whole −165px scroll, so the crawl never runs out of trace.
-const ICTD_EKG_BEAT = "h 3 l 1 1.5 l 1.5 -8 l 1.5 9 l 1 -2.5 h 2 q 2.5 -3.5 4 0 h 1";
-const ICTD_EKG_PATH = `M 0 15 ${Array(16).fill(ICTD_EKG_BEAT).join(" ")}`;
+// The subsystem board: 5 columns x 2 rows of 10x7 cells on a 3px gutter,
+// so the grid is exactly 62px wide and column centres land on
+// 5/18/31/44/57 — the stops jp-ictd-scan translates between. The sweep
+// trips on column 3, leaving column 4 untested until the retest.
+const ICTD_COLS = [0, 1, 2, 3, 4];
+const ICTD_FAULT_COL = 3;
 
 function ICTDScene({ c, t, anim, still }) {
   const beat = (name, timing = "ease") => anim(`${name} ${ICTD_BEAT}s ${timing} infinite`);
@@ -1089,6 +1091,24 @@ function ICTDScene({ c, t, anim, still }) {
     color: "rgba(255,255,255,.45)",
     textAlign: "center",
     lineHeight: 1,
+  };
+
+  // One subsystem on the board. Resolved state is passing, so the frozen
+  // card reads as a clean bill of health.
+  const diagCell = {
+    width: 10,
+    height: 7,
+    borderRadius: "1.5px",
+    bgcolor: "rgba(40,200,64,.55)",
+    flex: "0 0 auto",
+  };
+
+  // Columns the sweep already cleared pulse in turn as it crosses them;
+  // the delay walks that pulse across the board in step with the line.
+  const cellAnim = (col) => {
+    if (col === ICTD_FAULT_COL) return beat("jp-ictd-cell-fault");
+    if (col > ICTD_FAULT_COL) return beat("jp-ictd-cell-late");
+    return anim(`jp-ictd-cell-pass ${ICTD_BEAT}s ease ${(col * 0.24).toFixed(2)}s infinite`);
   };
 
   const streakProps = {
@@ -1151,10 +1171,11 @@ function ICTDScene({ c, t, anim, still }) {
         )}
       </Box>
 
-      {/* The asset's telemetry, half off the left edge in the cover's empty
+      {/* The unit's diagnostics, half off the left edge in the cover's empty
           margin, seated at rail unit 0: its id, a status LED, and the
-          heartbeat trace. The trace scrolls forever; the fault cuts it to
-          an amber flatline and the repair snaps it back with a flare. */}
+          subsystem board the desk tests. The sweep walks the board and
+          stops on the subsystem that fails; the repair clears it and the
+          sweep finishes the retest. */}
       <Box sx={{ ...glass, left: -14, top: "22%", p: "9px 11px" }}>
         <Box sx={{ display: "flex", alignItems: "center", gap: "10px" }}>
           <Box sx={greenLabel}>LPT-114</Box>
@@ -1173,50 +1194,45 @@ function ICTDScene({ c, t, anim, still }) {
         </Box>
         <Box
           sx={{
+            position: "relative",
             mt: "7px",
             width: 66,
-            height: 24,
-            borderRadius: "6px",
+            height: 21,
+            borderRadius: "5px",
             border: "1px solid rgba(255,255,255,.12)",
             bgcolor: "rgba(255,255,255,.05)",
+            p: "2px",
             overflow: "hidden",
           }}
         >
-          <Box component="svg" width="66" height="24" viewBox="0 0 66 24" sx={{ display: "block" }}>
-            <Box component="g" sx={{ animation: beat("jp-ictd-ekg-scroll", "linear") }}>
-              <Box
-                component="path"
-                d={ICTD_EKG_PATH}
-                sx={{
-                  fill: "none",
-                  stroke: ICTD_SIGNAL,
-                  strokeWidth: 1.6,
-                  strokeLinecap: "round",
-                  strokeLinejoin: "round",
-                  opacity: 1,
-                  filter: "drop-shadow(0 0 2px rgba(40,200,64,.6))",
-                  animation: beat("jp-ictd-ekg-pulse"),
-                }}
-              />
-            </Box>
-            {/* The flatline only exists while the asset is down */}
-            {!still && (
-              <Box
-                component="line"
-                x1="0"
-                y1="15"
-                x2="66"
-                y2="15"
-                sx={{
-                  stroke: ICTD_AMBER,
-                  strokeWidth: 1.6,
-                  strokeLinecap: "round",
-                  opacity: 0,
-                  animation: beat("jp-ictd-ekg-flat"),
-                }}
-              />
-            )}
+          <Box sx={{ display: "flex", flexDirection: "column", gap: "3px" }}>
+            {[0, 1].map((row) => (
+              <Box key={row} sx={{ display: "flex", gap: "3px" }}>
+                {ICTD_COLS.map((col) => (
+                  <Box key={col} sx={{ ...diagCell, animation: cellAnim(col) }} />
+                ))}
+              </Box>
+            ))}
           </Box>
+
+          {/* The sweep line. Only exists mid-cycle — a parked scanner on a
+              frozen card would read as a stalled test. */}
+          {!still && (
+            <Box
+              sx={{
+                position: "absolute",
+                left: "2px",
+                top: "2px",
+                width: "1.5px",
+                height: "17px",
+                borderRadius: "1px",
+                bgcolor: "#DFF7E4",
+                boxShadow: `0 0 8px rgba(40,200,64,.95)`,
+                opacity: 0,
+                animation: `jp-ictd-scan ${ICTD_BEAT}s linear infinite`,
+              }}
+            />
+          )}
         </Box>
       </Box>
 

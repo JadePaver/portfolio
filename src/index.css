@@ -112,6 +112,22 @@ code {
   to { transform: translateX(-5px); }
 }
 
+/* The "How I work" studio. `jp-proc-fill` runs inside the step illustrations;
+   the step rail's own countdown is not a keyframe at all, because it has to
+   hold mid-sweep on hover and resume from where it stopped — the component
+   writes that one straight to the transform. `jp-proc-in` replays whenever the
+   open step changes, which the component triggers by remounting the panel.
+   Both are gated on useReducedMotion(). */
+@keyframes jp-proc-fill {
+  0% { transform: scaleX(0); }
+  62%, 100% { transform: scaleX(1); }
+}
+
+@keyframes jp-proc-in {
+  from { opacity: 0; transform: translateY(11px); }
+  to { opacity: 1; transform: none; }
+}
+
 /* Work-card scenes — each project's little diorama, floating over its cover.
    Generic movements live here; anything that needs the project's own tint is
    styled inline. Components gate all of these on useReducedMotion(). */
@@ -484,42 +500,49 @@ code {
    The ICTD machine.
 
    One repair item's book-in -> book-out lifecycle, on one 12s clock. The
-   left chip is the asset's live telemetry — a heartbeat trace that never
-   stops scrolling — and the right chip is the custody log: two slots,
-   OWNER and ICTD, with the asset's tag physically seated in one. The
-   card's own border is the corridor between them. Every element runs on
-   the same clock, so the percentages below are beats of one
-   choreography:
+   left chip is the unit's diagnostics — a board of ten subsystem cells
+   and the sweep line that tests them — and the right chip is the custody
+   log: two slots, OWNER and ICTD, with the asset's tag physically seated
+   in one. The card's own border is the corridor between them. Every
+   element runs on the same clock, so the percentages below are beats of
+   one choreography:
 
-     0%     steady state — the trace pulses green, the LED is green, the
-            tag sits clamped in OWNER
-     8-9.5% the fault: the trace cuts to an amber flatline; the LED
-            flares amber
-     14-30% book-in — an amber light leaves the telemetry chip and runs
-            the rail (down the left edge, across the bottom, up the
-            right) to the custody desk
+     0%     steady state — the board reads all-green, the LED is green,
+            the tag sits clamped in OWNER
+     2-9%   the diagnostic sweep runs the board left to right; each
+            column gives a bright verification pulse as the line
+            crosses it (2.9 / 4.9 / 7%)
+     9%     the fault — the sweep reaches column 4 and stops dead: that
+            subsystem trips amber and the column past it goes dark,
+            never tested. The LED flares amber (10%)
+     14-30% book-in — an amber light leaves the diagnostics chip and
+            runs the rail (down the left edge, across the bottom, up
+            the right) to the custody desk
      30-34% custody transfers: OWNER unclamps, the tag slides one slot
             across, and the ICTD slot pinches shut around it
-     37-45% the bench works — the LED blinks amber over the flatline
-     46-48% the repair lands: the trace snaps back to life with a green
-            flare; the LED goes green
+     37-45% the bench works — the faulted cell blinks amber twice
+     46-48% the repair lands: the cell clears bright green; the LED
+            goes green
+     48-55% the retest — the sweep resumes from exactly where it
+            stopped, clears the last column (51.5%) and runs off the
+            right edge
      56-64% book-out: ICTD unclamps, the tag slides home, OWNER clamps
             around it again with a flare (66%)
      68-82% the return — the same light, green now, finishes the lap
             (up the right edge, along the top, down the left) and pours
-            back into the telemetry chip, which flares (83%)
+            back into the diagnostics chip, which flares (83%)
      85%    stillness; 100% = 0%, seamless
 
    The rail is one SVG path (pathLength=100) traced counter-clockwise
-   from the telemetry chip; the streak is a 6-unit dash walking
+   from the diagnostics chip; the streak is a 6-unit dash walking
    stroke-dashoffset between stations. A station at path unit s is
-   reached at dashoffset 6 - s. Stations: telemetry 0 (offset 6),
+   reached at dashoffset 6 - s. Stations: diagnostics 0 (offset 6),
    custody 64.5 (offset -58.5); the lap closes at 100 (offset -94),
    which renders identically to offset 6 one period earlier, so the
    restart is invisible. Both streak layers recolor amber -> green only
-   while parked at custody with opacity 0. The trace is a sixteen-beat
-   240px ribbon scrolling -165px (eleven 15px beats, ~55bpm) per cycle,
-   staying wider than its 66px window at both ends. Geometry lives in
+   while parked at custody with opacity 0. The sweep's stops are the
+   board's own column centres (5/18/31/44/57 in a 62px board), so the
+   cell pulses and the line stay in sync. Geometry lives in
    ProjectScenes.js (ICTDScene) — keep the two in step. Colors are the
    cover's own greens (#1E8050 tint, #28C840 OPERATIONAL signal) and its
    traffic-light amber deepened for dark glass (#F2B94B).
@@ -546,44 +569,66 @@ code {
   84%, 100% { stroke-dashoffset: -94; opacity: 0; stroke: #28C840; }
 }
 
-/* The telemetry ribbon's endless crawl: exactly eleven 15px heartbeats
-   per cycle, so 100% = 0% mid-stream with no visible jump. */
-@keyframes jp-ictd-ekg-scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-165px); }
+/* The diagnostic sweep: runs the board left to right at a constant rate,
+   stops dead on the subsystem that fails, waits out the whole repair,
+   then resumes from exactly where it stopped and clears the rest before
+   running off the right edge. Linear, because the halt should land as an
+   abrupt stop rather than a graceful settle. Stops are the board's own
+   column centres in px: 5 / 18 / 31 / 44 / 57 inside a 62px board. */
+@keyframes jp-ictd-scan {
+  0% { transform: translateX(-1px); opacity: 0; }
+  2% { transform: translateX(-1px); opacity: 1; }
+  9%, 48% { transform: translateX(44px); opacity: 1; }
+  53% { transform: translateX(63px); opacity: 1; }
+  55%, 100% { transform: translateX(63px); opacity: 0; }
 }
 
-/* The live trace: cut off by the fault, snapping back with a flare when
-   the repair lands. Frozen state = healthy and lit. */
-@keyframes jp-ictd-ekg-pulse {
-  0%, 8% { opacity: 1; filter: drop-shadow(0 0 2px rgba(40, 200, 64, 0.6)); }
-  9.5%, 46% { opacity: 0; filter: drop-shadow(0 0 2px rgba(40, 200, 64, 0.6)); }
-  48% { opacity: 1; filter: drop-shadow(0 0 7px rgba(40, 200, 64, 1)); }
-  54%, 100% { opacity: 1; filter: drop-shadow(0 0 2px rgba(40, 200, 64, 0.6)); }
+/* Subsystems the sweep clears: a bright verification pulse as the line
+   crosses, then back to a steady pass green. Per-column animation-delay
+   (0 / .24 / .48s) walks the pulse across the board in step with the
+   line; the keyframe is neutral everywhere else, so the delay costs
+   nothing elsewhere in the cycle. */
+@keyframes jp-ictd-cell-pass {
+  0%, 2% { background-color: rgba(40, 200, 64, 0.55); transform: scale(1); }
+  3% { background-color: #7CFF9A; transform: scale(1.18); }
+  5%, 100% { background-color: rgba(40, 200, 64, 0.55); transform: scale(1); }
 }
 
-/* The flatline underneath: only there while the asset is down. */
-@keyframes jp-ictd-ekg-flat {
-  0%, 8.5% { opacity: 0; }
-  9.5%, 46% { opacity: 1; }
-  47.5%, 100% { opacity: 0; }
+/* The subsystem that fails: it trips amber the moment the sweep reaches
+   it, blinks twice while the bench works, and clears bright green when
+   the repair lands. Frozen state = passing. */
+@keyframes jp-ictd-cell-fault {
+  0%, 8% { background-color: rgba(40, 200, 64, 0.55); box-shadow: none; }
+  9%, 37% { background-color: #F2B94B; box-shadow: 0 0 8px rgba(242, 185, 75, 0.9); }
+  39%, 43% { background-color: rgba(242, 185, 75, 0.22); box-shadow: none; }
+  41%, 46% { background-color: #F2B94B; box-shadow: 0 0 8px rgba(242, 185, 75, 0.9); }
+  48% { background-color: #7CFF9A; box-shadow: 0 0 10px rgba(40, 200, 64, 1); }
+  52%, 100% { background-color: rgba(40, 200, 64, 0.55); box-shadow: none; }
 }
 
-/* The asset's status LED: green -> amber flare on the fault, blinking
-   while the bench works, green flare on the fix, and one small
-   welcome-home flare when the asset lands back on the rail. Amber is
-   restated at 46% so the fault colour holds flat through the blinks
-   instead of creeping green from 37%. */
+/* The subsystems past the fault: never reached, because the sweep
+   aborted. They sit dark and untested until the retest gets to them at
+   51.5% — which is where the resumed line crosses column 4. */
+@keyframes jp-ictd-cell-late {
+  0%, 8% { background-color: rgba(40, 200, 64, 0.55); transform: scale(1); }
+  10%, 50% { background-color: rgba(255, 255, 255, 0.12); transform: scale(1); }
+  51.5% { background-color: #7CFF9A; transform: scale(1.18); }
+  54%, 100% { background-color: rgba(40, 200, 64, 0.55); transform: scale(1); }
+}
+
+/* The unit's overall status LED: green -> amber flare when the sweep
+   trips, holding amber through the whole repair, green flare when it
+   clears, and one small welcome-home flare when the asset lands back on
+   the rail. It does not blink during the bench work — the faulted cell
+   already does that, and two things saying it at once is noise. */
 @keyframes jp-ictd-led {
-  0%, 8% { background-color: #28C840; transform: scale(1); box-shadow: 0 0 6px rgba(40, 200, 64, 0.7); opacity: 1; }
-  10% { background-color: #F2B94B; transform: scale(1.5); box-shadow: 0 0 12px rgba(242, 185, 75, 0.9); opacity: 1; }
-  12%, 37% { background-color: #F2B94B; transform: scale(1); box-shadow: 0 0 6px rgba(242, 185, 75, 0.6); opacity: 1; }
-  39%, 43% { opacity: 0.25; }
-  41%, 46% { background-color: #F2B94B; transform: scale(1); box-shadow: 0 0 6px rgba(242, 185, 75, 0.6); opacity: 1; }
-  48% { background-color: #28C840; transform: scale(1.5); box-shadow: 0 0 12px rgba(40, 200, 64, 0.9); opacity: 1; }
-  50%, 81% { background-color: #28C840; transform: scale(1); box-shadow: 0 0 6px rgba(40, 200, 64, 0.7); opacity: 1; }
+  0%, 8% { background-color: #28C840; transform: scale(1); box-shadow: 0 0 6px rgba(40, 200, 64, 0.7); }
+  10% { background-color: #F2B94B; transform: scale(1.5); box-shadow: 0 0 12px rgba(242, 185, 75, 0.9); }
+  12%, 46% { background-color: #F2B94B; transform: scale(1); box-shadow: 0 0 6px rgba(242, 185, 75, 0.6); }
+  48% { background-color: #28C840; transform: scale(1.5); box-shadow: 0 0 12px rgba(40, 200, 64, 0.9); }
+  50%, 81% { background-color: #28C840; transform: scale(1); box-shadow: 0 0 6px rgba(40, 200, 64, 0.7); }
   83% { transform: scale(1.4); box-shadow: 0 0 12px rgba(40, 200, 64, 0.9); }
-  85%, 100% { background-color: #28C840; transform: scale(1); box-shadow: 0 0 6px rgba(40, 200, 64, 0.7); opacity: 1; }
+  85%, 100% { background-color: #28C840; transform: scale(1); box-shadow: 0 0 6px rgba(40, 200, 64, 0.7); }
 }
 
 /* The asset tag changing hands: one 32px slot step across on book-in,
