@@ -11,6 +11,7 @@ import {
   useTransform,
 } from "framer-motion";
 import { useRouteTransition } from "../transitions/RouteTransition";
+import Img, { Picture } from "./Img";
 import { SignatureFrame, SignatureMotif, FRAME_KINDS, MOTIF_KINDS } from "./design/WorkMarks";
 import { ProjectScene, SCENE_KINDS } from "./design/ProjectScenes";
 import { color, font, rgbChannels, EASE_CSS } from "./design/tokens";
@@ -21,6 +22,10 @@ const EASE = [0.22, 1, 0.36, 1];
 
 // Covers are 1780x1956 posters, so the frame matches them exactly — nothing gets cropped.
 const COVER_RATIO = "890 / 978";
+
+// Traces the shelf's own `clamp(256px, 74vw, 344px)` card width, so a phone
+// downloads a phone-sized cover instead of the desktop one.
+const COVER_SIZES = "(max-width: 346px) 256px, (max-width: 465px) 74vw, 344px";
 
 const TILT_SPRING = { stiffness: 220, damping: 22, mass: 0.6 };
 
@@ -250,30 +255,32 @@ const ProjectCard = forwardRef(function ProjectCard(
               }}
             />
 
-            <MotionBox
-              ref={imgRef}
-              component="img"
-              src={image}
-              alt={`${title} cover`}
-              loading="lazy"
-              decoding="async"
-              draggable={false}
-              onLoad={() => setLoaded(true)}
-              onError={() => setLoaded(true)}
-              variants={{ rest: { scale: 1 }, hover: { scale: reduceMotion ? 1 : 1.06 } }}
-              transition={{ duration: 0.7, ease: EASE }}
-              sx={{
-                position: "absolute",
-                inset: 0,
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                display: "block",
-                opacity: loaded ? 1 : 0,
-                transition: "opacity 500ms ease",
-                willChange: "transform",
-              }}
-            />
+            <Picture src={image} sizes={COVER_SIZES}>
+              <MotionBox
+                ref={imgRef}
+                component="img"
+                src={image}
+                alt={`${title} cover`}
+                loading="lazy"
+                decoding="async"
+                draggable={false}
+                onLoad={() => setLoaded(true)}
+                onError={() => setLoaded(true)}
+                variants={{ rest: { scale: 1 }, hover: { scale: reduceMotion ? 1 : 1.06 } }}
+                transition={{ duration: 0.7, ease: EASE }}
+                sx={{
+                  position: "absolute",
+                  inset: 0,
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  display: "block",
+                  opacity: loaded ? 1 : 0,
+                  transition: "opacity 500ms ease",
+                  willChange: "transform",
+                }}
+              />
+            </Picture>
 
             {/* The project's signature frame, drawn in its own tint */}
             <SignatureFrame kind={frameKind} tint={tint} />
@@ -351,10 +358,10 @@ const ProjectCard = forwardRef(function ProjectCard(
                         WebkitBackdropFilter: "blur(4px)",
                       }}
                     >
-                      <Box
-                        component="img"
+                      <Img
                         src={`${process.env.PUBLIC_URL}/icons/${t.icon}`}
                         alt=""
+                        sizes="14px"
                         sx={{ width: 14, height: 14, display: "block" }}
                       />
                       <Typography

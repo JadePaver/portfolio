@@ -5,9 +5,17 @@ import {
   AnimatePresence,
   useAnimationControls,
 } from "framer-motion";
+import { Picture } from "./Img";
 
 const MotionPaper = motion(Paper);
 const MotionBox = motion(Box);
+
+/**
+ * Several of these icons are Figma exports carrying a full-size PNG inside the
+ * SVG — 130 KB to paint an 18px chip. `Picture` swaps in the 64px raster the
+ * optimiser made; the SVG stays as the fallback.
+ */
+const ICON_SIZES = "18px";
 
 function IconRow({ icon, index, activeIndex, isClosing }) {
   const boxControls = useAnimationControls();
@@ -118,16 +126,18 @@ function IconRow({ icon, index, activeIndex, isClosing }) {
           willChange: "transform, opacity, box-shadow",
         }}
       >
-        <motion.img
-          src={`${process.env.PUBLIC_URL}/icons/${icon}.svg`}
-          width={18}
-          height={18}
-          alt={icon}
-          initial="initial"
-          animate={boxControls}
-          variants={imgVariants}
-          style={{ willChange: "transform, opacity" }}
-        />
+        <Picture src={`${process.env.PUBLIC_URL}/icons/${icon}.svg`} sizes={ICON_SIZES}>
+          <motion.img
+            src={`${process.env.PUBLIC_URL}/icons/${icon}.svg`}
+            width={18}
+            height={18}
+            alt={icon}
+            initial="initial"
+            animate={boxControls}
+            variants={imgVariants}
+            style={{ willChange: "transform, opacity" }}
+          />
+        </Picture>
       </motion.div>
       <motion.div
         variants={textVariants}
@@ -283,14 +293,16 @@ export default function IconStackExpandable({ items }) {
                 justifyContent: "center",
               }}
             >
-              <motion.img
-                variants={visibleImgVariants}
-                src={`${process.env.PUBLIC_URL}/icons/${icon}.svg`}
-                width={18}
-                height={18}
-                alt={icon}
-                style={{ willChange: "transform" }}
-              />
+              <Picture src={`${process.env.PUBLIC_URL}/icons/${icon}.svg`} sizes={ICON_SIZES}>
+                <motion.img
+                  variants={visibleImgVariants}
+                  src={`${process.env.PUBLIC_URL}/icons/${icon}.svg`}
+                  width={18}
+                  height={18}
+                  alt={icon}
+                  style={{ willChange: "transform" }}
+                />
+              </Picture>
             </MotionBox>
           </Tooltip>
         ))}

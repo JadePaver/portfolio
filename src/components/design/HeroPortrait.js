@@ -1,7 +1,11 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Box, useMediaQuery } from "@mui/material";
 import { useReducedMotion } from "framer-motion";
+import Img from "../Img";
 import { color, font, EASE_CSS } from "./tokens";
+
+/** The stage is `min(100%, 470px)`, and the cut-out fills it. */
+const PORTRAIT_SIZES = "(max-width: 470px) 100vw, 470px";
 
 const SEAL_PHRASE = "JADE N. PAVER · SOFTWARE DEVELOPER · WEB · MOBILE · UI/UX · ";
 
@@ -336,10 +340,13 @@ export default function HeroPortrait({ src, alt }) {
           </Box>
         </Box>
 
-        <Box
-          component="img"
+        <Img
           src={src}
           alt={alt}
+          sizes={PORTRAIT_SIZES}
+          // The first thing on the page worth looking at, so it is fetched
+          // ahead of everything else rather than waiting its turn.
+          priority
           sx={{
             position: "absolute",
             inset: 0,

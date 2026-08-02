@@ -1,5 +1,6 @@
 import { Typography, Box, Tooltip } from "@mui/material";
 import { motion } from "framer-motion";
+import { Picture } from "./Img";
 import { TypewriterText } from "./TypewriterText";
 
 const MotionBox = motion(Box);
@@ -29,13 +30,15 @@ export function TechIconTooltip({ label, iconFile, alt, visibleIconVariants, vis
           cursor: "pointer",
         }}
       >
-        <Box
-          component={motion.img}
-          variants={visibleImgVariants}
-          src={`${process.env.PUBLIC_URL}/icons/${iconFile}`}
-          alt={alt ?? label}
-          sx={{ width: { xs: 18, lg: 22 }, height: { xs: 18, lg: 22 }, willChange: "transform" }}
-        />
+        <Picture src={`${process.env.PUBLIC_URL}/icons/${iconFile}`} sizes="22px">
+          <Box
+            component={motion.img}
+            variants={visibleImgVariants}
+            src={`${process.env.PUBLIC_URL}/icons/${iconFile}`}
+            alt={alt ?? label}
+            sx={{ width: { xs: 18, lg: 22 }, height: { xs: 18, lg: 22 }, willChange: "transform" }}
+          />
+        </Picture>
       </MotionBox>
     </Tooltip>
   );

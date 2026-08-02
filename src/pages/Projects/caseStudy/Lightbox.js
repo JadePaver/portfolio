@@ -14,10 +14,17 @@ import {
   useAnimationControls,
   useReducedMotion,
 } from "framer-motion";
+import { Picture } from "../../../components/Img";
 import { flipBetween } from "../../../transitions/morph";
 import { ACCENT, EASE, font, ink } from "./tokens";
 
 const MotionBox = motion(Box);
+
+/** The enlarged image's own ceiling, mirrored from the `maxWidth` below. */
+const ZOOM_SIZES = {
+  wide: "(min-width: 1362px) 1280px, 94vw",
+  tall: "(min-width: 489px) 430px, 88vw",
+};
 
 const ZoomContext = createContext(() => {});
 
@@ -158,29 +165,32 @@ export default function ZoomProvider({ children }) {
               willChange: "opacity",
             }}
           >
-            <MotionBox
-              component="img"
-              ref={imgRef}
-              src={item.src}
-              alt={item.alt || "Enlarged preview"}
-              initial={{ opacity: 0 }}
-              animate={controls}
-              onClick={(e) => e.stopPropagation()}
-              sx={{
-                // Wide presentation art gets the full frame; a portrait
-                // screenshot blown up that far just looks soft.
-                maxWidth: item.wide ? "min(1280px, 94vw)" : "min(430px, 88vw)",
-                maxHeight: "82vh",
-                width: "auto",
-                height: "auto",
-                objectFit: "contain",
-                display: "block",
-                border: `1px solid ${ink.lineStrong}`,
-                boxShadow: "0 40px 90px rgba(0,0,0,.55)",
-                cursor: "default",
-                willChange: "transform",
-              }}
-            />
+            <Picture src={item.src} sizes={item.wide ? ZOOM_SIZES.wide : ZOOM_SIZES.tall}>
+              <MotionBox
+                component="img"
+                ref={imgRef}
+                src={item.src}
+                alt={item.alt || "Enlarged preview"}
+                decoding="async"
+                initial={{ opacity: 0 }}
+                animate={controls}
+                onClick={(e) => e.stopPropagation()}
+                sx={{
+                  // Wide presentation art gets the full frame; a portrait
+                  // screenshot blown up that far just looks soft.
+                  maxWidth: item.wide ? "min(1280px, 94vw)" : "min(430px, 88vw)",
+                  maxHeight: "82vh",
+                  width: "auto",
+                  height: "auto",
+                  objectFit: "contain",
+                  display: "block",
+                  border: `1px solid ${ink.lineStrong}`,
+                  boxShadow: "0 40px 90px rgba(0,0,0,.55)",
+                  cursor: "default",
+                  willChange: "transform",
+                }}
+              />
+            </Picture>
 
             {item.caption && (
               <MotionBox

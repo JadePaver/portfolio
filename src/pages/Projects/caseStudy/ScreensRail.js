@@ -1,6 +1,7 @@
 import { useCallback, useRef, useState } from "react";
 import { Box } from "@mui/material";
 import { useReducedMotion } from "framer-motion";
+import Img from "../../../components/Img";
 import { MissingAsset } from "./Figure";
 import { accentFor, EASE_CSS, font, paper } from "./tokens";
 
@@ -17,6 +18,15 @@ const CARD_WIDTH = {
   phone: "clamp(198px, 20vw, 240px)",
   browser: "clamp(290px, 31vw, 412px)",
 };
+
+/**
+ * What to tell the browser a card is worth downloading at.
+ *
+ * The widest a card ever gets, rather than the clamp above — `sizes` has no
+ * `clamp()`, and guessing low on a rail that is mostly viewed at its maximum
+ * would cost sharpness on every card to save bytes on none.
+ */
+const CARD_SIZES = { phone: "240px", browser: "412px" };
 
 /** The card every shot sits on, whichever frame it wears. */
 function ShotCard({ shot, frame, failed, onZoom, children }) {
@@ -89,11 +99,11 @@ function PhoneShot({ shot, ratio, onZoom }) {
               sx={{ borderRadius: "clamp(15px, 1.6vw, 20px)" }}
             />
           ) : (
-            <Box
-              component="img"
+            <Img
               src={shot.src}
               alt={shot.alt}
-              loading="lazy"
+              sizes={CARD_SIZES.phone}
+              placeholder
               draggable={false}
               onError={() => setFailed(true)}
               sx={{
@@ -180,11 +190,11 @@ function BrowserShot({ shot, ratio, onZoom }) {
       {failed ? (
         <MissingAsset file={shot.file} ratio={ratio} tone="paper" />
       ) : (
-        <Box
-          component="img"
+        <Img
           src={shot.src}
           alt={shot.alt}
-          loading="lazy"
+          sizes={CARD_SIZES.browser}
+          placeholder
           draggable={false}
           onError={() => setFailed(true)}
           sx={{

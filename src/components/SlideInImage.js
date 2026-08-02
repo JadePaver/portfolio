@@ -4,8 +4,12 @@ import { Box, Typography } from "@mui/material";
 import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import ZoomOutMapRoundedIcon from "@mui/icons-material/ZoomOutMapRounded";
+import { imageMeta, Picture } from "./Img";
 
 const EASE_OUT = [0.22, 1, 0.36, 1];
+
+/** The project column is 860px wide, and this sits inside its 16px padding. */
+const IMAGE_SIZES = "(min-width: 900px) 828px, calc(100vw - 32px)";
 
 const ENTER_OFFSET = {
   up: { x: 0, y: 44 },
@@ -29,6 +33,9 @@ export function SlideInImage({
   const imgRef = useRef(null);
   const [loaded, setLoaded] = useState(false);
   const [zoomed, setZoomed] = useState(false);
+  // The intrinsic size, so the column is the right height before the image
+  // lands rather than growing under whatever the reader is already reading.
+  const meta = imageMeta(src);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -125,29 +132,34 @@ export function SlideInImage({
           style={parallax && !reduceMotion ? { y: parallaxY } : undefined}
           sx={{ position: "relative", zIndex: 1 }}
         >
-          <Box
-            component="img"
-            ref={imgRef}
-            className="sii-img"
-            src={src}
-            alt={alt}
-            loading={eager ? "eager" : "lazy"}
-            decoding="async"
-            draggable={false}
-            onLoad={() => setLoaded(true)}
-            sx={{
-              width: "100%",
-              height: "auto",
-              display: "block",
-              mx: "auto",
-              borderRadius: 1.5,
-              opacity: loaded ? 1 : 0,
-              transformOrigin: "center",
-              transition:
-                "transform 0.6s cubic-bezier(0.22,1,0.36,1), opacity 0.5s ease",
-              ...imgSx,
-            }}
-          />
+          <Picture src={src} sizes={IMAGE_SIZES}>
+            <Box
+              component="img"
+              ref={imgRef}
+              className="sii-img"
+              src={src}
+              alt={alt}
+              width={meta?.w}
+              height={meta?.h}
+              loading={eager ? "eager" : "lazy"}
+              fetchPriority={eager ? "high" : undefined}
+              decoding={eager ? "auto" : "async"}
+              draggable={false}
+              onLoad={() => setLoaded(true)}
+              sx={{
+                width: "100%",
+                height: "auto",
+                display: "block",
+                mx: "auto",
+                borderRadius: 1.5,
+                opacity: loaded ? 1 : 0,
+                transformOrigin: "center",
+                transition:
+                  "transform 0.6s cubic-bezier(0.22,1,0.36,1), opacity 0.5s ease",
+                ...imgSx,
+              }}
+            />
+          </Picture>
         </Box>
 
         {/* Shimmer placeholder — holds the space until the image decodes */}
@@ -275,24 +287,27 @@ export function SlideInImage({
                   WebkitBackdropFilter: "blur(10px)",
                 }}
               >
-                <Box
-                  component={motion.img}
-                  src={src}
-                  alt={alt}
-                  onClick={(e) => e.stopPropagation()}
-                  initial={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.94, y: 14 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.96, y: 10 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                  sx={{
-                    maxWidth: "100%",
-                    maxHeight: "100%",
-                    objectFit: "contain",
-                    borderRadius: 2,
-                    cursor: "default",
-                    boxShadow: "0 30px 90px rgba(0,0,0,0.55)",
-                  }}
-                />
+                <Picture src={src} sizes="95vw">
+                  <Box
+                    component={motion.img}
+                    src={src}
+                    alt={alt}
+                    decoding="async"
+                    onClick={(e) => e.stopPropagation()}
+                    initial={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.94, y: 14 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.96, y: 10 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                    sx={{
+                      maxWidth: "100%",
+                      maxHeight: "100%",
+                      objectFit: "contain",
+                      borderRadius: 2,
+                      cursor: "default",
+                      boxShadow: "0 30px 90px rgba(0,0,0,0.55)",
+                    }}
+                  />
+                </Picture>
                 <Box
                   component="button"
                   type="button"

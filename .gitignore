@@ -11,6 +11,10 @@
 # production
 /build
 
+# generated image derivatives — rebuilt by `npm run images`, which every
+# start/build runs first. The manifest they are described by IS committed.
+/public/images-opt
+
 # misc
 .DS_Store
 .env.local

@@ -1,0 +1,1067 @@
+{
+  "icons/android_studio.svg": {
+    "w": 842,
+    "h": 842,
+    "widths": [
+      64,
+      128
+    ],
+    "color": "#f8f8f8"
+  },
+  "icons/dart.svg": {
+    "w": 842,
+    "h": 842,
+    "widths": [
+      64,
+      128
+    ],
+    "color": "#080808"
+  },
+  "icons/laravel.svg": {
+    "w": 825,
+    "h": 842,
+    "widths": [
+      64,
+      128
+    ],
+    "color": "#080808"
+  },
+  "icons/react.svg": {
+    "w": 925,
+    "h": 825,
+    "widths": [
+      64,
+      128
+    ],
+    "color": "#080808"
+  },
+  "images/aes1.png": {
+    "w": 2500,
+    "h": 1500,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      2000
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/aes2.png": {
+    "w": 2776,
+    "h": 960,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      2000
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/aes3.png": {
+    "w": 2592,
+    "h": 1024,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      2000
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/aes4.png": {
+    "w": 1740,
+    "h": 2966,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      1740
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/aes5.png": {
+    "w": 2744,
+    "h": 864,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      2000
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/aes6.png": {
+    "w": 2744,
+    "h": 841,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      2000
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/aspentech/customizer-hero.png": {
+    "w": 2392,
+    "h": 1216,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      2000
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/aspentech/customizer-panel.png": {
+    "w": 1965,
+    "h": 1056,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      1965
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/aspentech/customizer-phones.png": {
+    "w": 2392,
+    "h": 1244,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      2000
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/aspentech/customizer-promo.png": {
+    "w": 1965,
+    "h": 961,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      1965
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/aspentech/detail-hero.png": {
+    "w": 1963,
+    "h": 832,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      1963
+    ],
+    "color": "#081838"
+  },
+  "images/aspentech/detail-impact.png": {
+    "w": 1963,
+    "h": 1050,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      1963
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/aspentech/detail-overview.png": {
+    "w": 2392,
+    "h": 1218,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      2000
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/aspentech/hero.png": {
+    "w": 2392,
+    "h": 1160,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      2000
+    ],
+    "color": "#081838"
+  },
+  "images/aspentech/process.png": {
+    "w": 1963,
+    "h": 967,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      1963
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/aspentech/templates.png": {
+    "w": 2392,
+    "h": 1216,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      2000
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/aspentech/why.png": {
+    "w": 1962,
+    "h": 811,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      1962
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/client_demo_cover.png": {
+    "w": 890,
+    "h": 978,
+    "widths": [
+      400,
+      800,
+      890
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/furniture1.png": {
+    "w": 2240,
+    "h": 1440,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      2000
+    ],
+    "color": "#c8c8c8"
+  },
+  "images/furniture2.png": {
+    "w": 1120,
+    "h": 720,
+    "widths": [
+      400,
+      800,
+      1120
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/furniture3.png": {
+    "w": 2744,
+    "h": 916,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      2000
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/furniture4.png": {
+    "w": 2744,
+    "h": 1084,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      2000
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/gso_pmd1.png": {
+    "w": 1420,
+    "h": 783,
+    "widths": [
+      400,
+      800,
+      1200,
+      1420
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/gso_pmd2.png": {
+    "w": 1420,
+    "h": 783,
+    "widths": [
+      400,
+      800,
+      1200,
+      1420
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/gso_pmd3.png": {
+    "w": 1420,
+    "h": 783,
+    "widths": [
+      400,
+      800,
+      1200,
+      1420
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/ictd/admin-repairs.png": {
+    "w": 2536,
+    "h": 1383,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      2000
+    ],
+    "color": "#989898"
+  },
+  "images/ictd/feat-admin.png": {
+    "w": 2392,
+    "h": 1346,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      2000
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/ictd/feat-messages.png": {
+    "w": 2392,
+    "h": 1346,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      2000
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/ictd/feat-repairs.png": {
+    "w": 2392,
+    "h": 1346,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      2000
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/ictd/feat-requests.png": {
+    "w": 2392,
+    "h": 1346,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      2000
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/ictd/hero.png": {
+    "w": 2392,
+    "h": 1346,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      2000
+    ],
+    "color": "#081818"
+  },
+  "images/ictd/poster.png": {
+    "w": 890,
+    "h": 978,
+    "widths": [
+      400,
+      800,
+      890
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/ictd/scr-activity.png": {
+    "w": 724,
+    "h": 1520,
+    "widths": [
+      400,
+      724
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/ictd/scr-chat.png": {
+    "w": 668,
+    "h": 1484,
+    "widths": [
+      400,
+      668
+    ],
+    "color": "#f8f8e8"
+  },
+  "images/ictd/scr-guide.png": {
+    "w": 668,
+    "h": 1484,
+    "widths": [
+      400,
+      668
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/ictd/scr-messages.png": {
+    "w": 668,
+    "h": 1484,
+    "widths": [
+      400,
+      668
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/ictd/scr-repair-detail.png": {
+    "w": 668,
+    "h": 1484,
+    "widths": [
+      400,
+      668
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/ictd/scr-repairs.png": {
+    "w": 668,
+    "h": 1484,
+    "widths": [
+      400,
+      668
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/ictd/scr-requests.png": {
+    "w": 724,
+    "h": 1520,
+    "widths": [
+      400,
+      724
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/ictd/scr-signin.png": {
+    "w": 734,
+    "h": 1600,
+    "widths": [
+      400,
+      734
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/ictd/scr-splash.png": {
+    "w": 736,
+    "h": 1600,
+    "widths": [
+      400,
+      736
+    ],
+    "color": "#088868"
+  },
+  "images/ictd_cover.png": {
+    "w": 890,
+    "h": 978,
+    "widths": [
+      400,
+      800,
+      890
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/ledger/feat-ai.png": {
+    "w": 2392,
+    "h": 1346,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      2000
+    ],
+    "color": "#083838"
+  },
+  "images/ledger/feat-goals.png": {
+    "w": 2392,
+    "h": 1346,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      2000
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/ledger/feat-insights.png": {
+    "w": 2392,
+    "h": 1346,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      2000
+    ],
+    "color": "#083828"
+  },
+  "images/ledger/feat-wallets.png": {
+    "w": 2392,
+    "h": 1346,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      2000
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/ledger/hero.png": {
+    "w": 2392,
+    "h": 1346,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      2000
+    ],
+    "color": "#083828"
+  },
+  "images/ledger/poster.png": {
+    "w": 1780,
+    "h": 1956,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      1780
+    ],
+    "color": "#081818"
+  },
+  "images/ledger/scr-ai.png": {
+    "w": 668,
+    "h": 1486,
+    "widths": [
+      400,
+      668
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/ledger/scr-breakdown.png": {
+    "w": 716,
+    "h": 1592,
+    "widths": [
+      400,
+      716
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/ledger/scr-debts.png": {
+    "w": 668,
+    "h": 1484,
+    "widths": [
+      400,
+      668
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/ledger/scr-edit-wallet.png": {
+    "w": 720,
+    "h": 1600,
+    "widths": [
+      400,
+      720
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/ledger/scr-goals.png": {
+    "w": 668,
+    "h": 1484,
+    "widths": [
+      400,
+      668
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/ledger/scr-insights.png": {
+    "w": 716,
+    "h": 1594,
+    "widths": [
+      400,
+      716
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/ledger/scr-signin.png": {
+    "w": 720,
+    "h": 1600,
+    "widths": [
+      400,
+      720
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/ledger/scr-summary.png": {
+    "w": 720,
+    "h": 1600,
+    "widths": [
+      400,
+      720
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/ledger/scr-wallets.png": {
+    "w": 1920,
+    "h": 5854,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      1920
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/ledger_cover.png": {
+    "w": 1335,
+    "h": 1467,
+    "widths": [
+      400,
+      800,
+      1200,
+      1335
+    ],
+    "color": "#081818"
+  },
+  "images/lms/feat-catalog.png": {
+    "w": 2392,
+    "h": 1654,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      2000
+    ],
+    "color": "#081818"
+  },
+  "images/lms/feat-grading.png": {
+    "w": 2392,
+    "h": 1654,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      2000
+    ],
+    "color": "#081818"
+  },
+  "images/lms/feat-instructor.png": {
+    "w": 2392,
+    "h": 1654,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      2000
+    ],
+    "color": "#181828"
+  },
+  "images/lms/feat-module.png": {
+    "w": 2392,
+    "h": 1654,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      2000
+    ],
+    "color": "#081818"
+  },
+  "images/lms/feat-workspace.png": {
+    "w": 2392,
+    "h": 1654,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      2000
+    ],
+    "color": "#181818"
+  },
+  "images/lms/hero.png": {
+    "w": 2392,
+    "h": 1346,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      2000
+    ],
+    "color": "#080818"
+  },
+  "images/lms/poster.png": {
+    "w": 1780,
+    "h": 1956,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      1780
+    ],
+    "color": "#181818"
+  },
+  "images/lms/scr-assess.png": {
+    "w": 1833,
+    "h": 1147,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      1833
+    ],
+    "color": "#080808"
+  },
+  "images/lms/scr-catalog.png": {
+    "w": 1831,
+    "h": 1144,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      1831
+    ],
+    "color": "#181818"
+  },
+  "images/lms/scr-instructor.png": {
+    "w": 1833,
+    "h": 1144,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      1833
+    ],
+    "color": "#181818"
+  },
+  "images/lms/scr-module.png": {
+    "w": 1839,
+    "h": 1144,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      1839
+    ],
+    "color": "#080818"
+  },
+  "images/lms/scr-signin.png": {
+    "w": 1837,
+    "h": 1147,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      1837
+    ],
+    "color": "#080818"
+  },
+  "images/lms/scr-submissions.png": {
+    "w": 1833,
+    "h": 1149,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      1833
+    ],
+    "color": "#080818"
+  },
+  "images/lms_cover.png": {
+    "w": 890,
+    "h": 978,
+    "widths": [
+      400,
+      800,
+      890
+    ],
+    "color": "#181818"
+  },
+  "images/me1.png": {
+    "w": 1138,
+    "h": 1492,
+    "widths": [
+      400,
+      800,
+      1138
+    ],
+    "color": "#080808"
+  },
+  "images/me_no_shade1.png": {
+    "w": 1138,
+    "h": 1492,
+    "widths": [
+      400,
+      800,
+      1138
+    ],
+    "color": "#080808"
+  },
+  "images/me_no_shade2.png": {
+    "w": 1138,
+    "h": 1450,
+    "widths": [
+      400,
+      800,
+      1138
+    ],
+    "color": "#080808"
+  },
+  "images/pasabay/ch1-firstrun.png": {
+    "w": 2880,
+    "h": 1620,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      2000
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/pasabay/ch2-discover.png": {
+    "w": 2880,
+    "h": 1620,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      2000
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/pasabay/ch3-order.png": {
+    "w": 2880,
+    "h": 1620,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      2000
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/pasabay/ch4-deliver.png": {
+    "w": 2880,
+    "h": 1620,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      2000
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/pasabay/hero.png": {
+    "w": 2880,
+    "h": 1620,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600,
+      2000
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/pasabay/poster.png": {
+    "w": 890,
+    "h": 978,
+    "widths": [
+      400,
+      800,
+      890
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/pasabay/scr-cart.png": {
+    "w": 760,
+    "h": 1640,
+    "widths": [
+      400,
+      760
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/pasabay/scr-checkout.png": {
+    "w": 760,
+    "h": 1640,
+    "widths": [
+      400,
+      760
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/pasabay/scr-home.png": {
+    "w": 380,
+    "h": 810,
+    "widths": [
+      380
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/pasabay/scr-kitchens.png": {
+    "w": 760,
+    "h": 1620,
+    "widths": [
+      400,
+      760
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/pasabay/scr-otp.png": {
+    "w": 720,
+    "h": 1600,
+    "widths": [
+      400,
+      720
+    ],
+    "color": "#f8b808"
+  },
+  "images/pasabay/scr-pin.png": {
+    "w": 720,
+    "h": 1600,
+    "widths": [
+      400,
+      720
+    ],
+    "color": "#f8b808"
+  },
+  "images/pasabay/scr-search.png": {
+    "w": 760,
+    "h": 1620,
+    "widths": [
+      400,
+      760
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/pasabay/scr-signin.png": {
+    "w": 360,
+    "h": 800,
+    "widths": [
+      360
+    ],
+    "color": "#f8b808"
+  },
+  "images/pasabay/scr-signup.png": {
+    "w": 720,
+    "h": 1600,
+    "widths": [
+      400,
+      720
+    ],
+    "color": "#f8b808"
+  },
+  "images/pasabay/scr-thankyou.png": {
+    "w": 720,
+    "h": 1600,
+    "widths": [
+      400,
+      720
+    ],
+    "color": "#f8f8f8"
+  },
+  "images/pasabay_cover.png": {
+    "w": 890,
+    "h": 978,
+    "widths": [
+      400,
+      800,
+      890
+    ],
+    "color": "#f8f8f8"
+  },
+  "logos/jp_logo1.png": {
+    "w": 208,
+    "h": 208,
+    "widths": [
+      208
+    ],
+    "color": "#080808"
+  },
+  "logos/jp_logo2.png": {
+    "w": 208,
+    "h": 208,
+    "widths": [
+      208
+    ],
+    "color": "#080808"
+  },
+  "logos/jp_logo3.png": {
+    "w": 208,
+    "h": 208,
+    "widths": [
+      208
+    ],
+    "color": "#f86818"
+  },
+  "logos/jp_logo4.png": {
+    "w": 56,
+    "h": 56,
+    "widths": [
+      56
+    ],
+    "color": "#181818"
+  }
+}

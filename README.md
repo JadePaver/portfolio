@@ -2,6 +2,23 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Images
+
+`public/images`, `public/icons` and `public/logos` hold full-resolution masters —
+the files to edit, and the only ones in git. Nothing there is served as-is.
+
+`npm run images` re-encodes every master into AVIF and WebP across a ladder of
+widths, writes them to `public/images-opt/` (gitignored), and records what it
+made in `src/generated/imageManifest.json` (committed). `npm start` and
+`npm run build` both run it first, and it only re-encodes what changed — so
+after adding or replacing a master, just start the app. Use `--force` to
+re-encode everything, e.g. after changing a quality setting in
+`scripts/optimize-images.mjs`.
+
+The `<Img>` / `<Picture>` components in `src/components/Img.js` read the
+manifest and hand the browser the whole set, so each screen downloads the size
+it can actually show. The master stays on the `<img>` as the fallback.
+
 ## Available Scripts
 
 In the project directory, you can run:

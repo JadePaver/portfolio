@@ -1,7 +1,14 @@
 import { useState } from "react";
 import { Box } from "@mui/material";
+import Img from "../../../components/Img";
 import { useCaseTheme } from "./context";
 import { accentFor, EASE_CSS, font, ink, paper } from "./tokens";
+
+/**
+ * How wide a figure is drawn: the full column inside the 1240px shell, which
+ * is 22px of padding either side of it.
+ */
+const FIGURE_SIZES = "(min-width: 1240px) 1196px, calc(100vw - 44px)";
 
 /**
  * Placeholder shown when an asset is missing.
@@ -84,11 +91,12 @@ export default function Figure({
       {failed ? (
         <MissingAsset file={figure.file} ratio={figure.ratio} tone={tone} />
       ) : (
-        <Box
-          component="img"
+        <Img
           src={figure.src}
           alt={figure.alt}
-          loading={eager ? "eager" : "lazy"}
+          sizes={FIGURE_SIZES}
+          priority={eager}
+          placeholder
           onError={() => setFailed(true)}
           sx={{
             display: "block",

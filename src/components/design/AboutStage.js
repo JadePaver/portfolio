@@ -1,7 +1,11 @@
 import { useCallback, useRef, useState } from "react";
 import { Box, useMediaQuery } from "@mui/material";
 import { useReducedMotion } from "framer-motion";
+import Img from "../Img";
 import { color, font, EASE_CSS } from "./tokens";
+
+/** The stage is `min(100%, 430px)`, and the cut-out fills it. */
+const PORTRAIT_SIZES = "(max-width: 430px) 100vw, 430px";
 
 /**
  * The About portrait and the exhibit built around it: a tilted dot-grid plate,
@@ -288,10 +292,10 @@ export default function AboutStage({
           "&:focus-visible": { outline: `3px solid ${color.accent}`, outlineOffset: "4px" },
         }}
       >
-        <Box
-          component="img"
+        <Img
           src={src}
           alt={alt}
+          sizes={PORTRAIT_SIZES}
           sx={{
             position: "absolute",
             inset: 0,
