@@ -26,7 +26,7 @@ export default function AboutStage({
   chapterYear,
   chapterIndex,
   onAdvance,
-  degree = { title: "BS Information Technology", sub: "Class of 2024" },
+  degree = { title: "BS Computer Technology", sub: "Class of 2024" },
   years = "6+",
   location = "Philippines · GMT+8",
 }) {

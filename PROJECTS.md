@@ -50,13 +50,13 @@ A high school computer lab, a borrowed book, and a habit that never wore off.
 - Learned by: Self-taught
 - Shipping: 6+ years
 
-### 2024 — BS Information Technology
+### 2024 — BS Computer Technology
 Graduated while already shipping paid client work on the side.
 
 > Graduated in 2024, already shipping paid client work on the side. The degree
 > confirmed what the side projects had been teaching for years.
 
-- Degree: BS Information Technology (Class of 2024)
+- Degree: BS Computer Technology (Class of 2024)
 - Finished: 2024
 - Alongside: Client work
 

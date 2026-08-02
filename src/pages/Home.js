@@ -219,15 +219,15 @@ const MILESTONES = [
   {
     id: "degree",
     year: "2024",
-    label: "BS Information Technology",
+    label: "BS Computer Technology",
     detail: "Graduated while already shipping paid client work on the side.",
     capsule: { label: "Graduated", year: "2024" },
     chapter: {
       eyebrow: "2024",
-      title: "BS Information Technology",
+      title: "BS Computer Technology",
       body: "Graduated in 2024, already shipping paid client work on the side. The degree confirmed what the side projects had been teaching for years.",
       stats: [
-        { label: "Degree", value: "BS Info Tech" },
+        { label: "Degree", value: "BS Comp Tech" },
         { label: "Finished", value: "2024", accent: true },
         { label: "Alongside", value: "Client work" },
       ],
@@ -744,7 +744,7 @@ export default function Home() {
                 chapterYear={chapter.capsule.year}
                 chapterIndex={`${chapterNumber}/${MILESTONES.length}`}
                 onAdvance={advanceChapter}
-                degree={{ title: "BS Information Technology", sub: "Class of 2024" }}
+                degree={{ title: "BS Computer Technology", sub: "Class of 2024" }}
               />
 
               {/* Three chapters stacked in one cell, so swapping between them
