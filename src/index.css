@@ -112,20 +112,374 @@ code {
   to { transform: translateX(-5px); }
 }
 
-/* The "How I work" studio. `jp-proc-fill` runs inside the step illustrations;
-   the step rail's own countdown is not a keyframe at all, because it has to
-   hold mid-sweep on hover and resume from where it stopped — the component
-   writes that one straight to the transform. `jp-proc-in` replays whenever the
-   open step changes, which the component triggers by remounting the panel.
-   Both are gated on useReducedMotion(). */
-@keyframes jp-proc-fill {
-  0% { transform: scaleX(0); }
-  62%, 100% { transform: scaleX(1); }
-}
-
+/* The "How I work" studio. The step rail's own countdown is not a keyframe at
+   all, because it has to hold mid-sweep on hover and resume from where it
+   stopped — the component writes that one straight to the transform.
+   `jp-proc-in` replays whenever the open step changes, which the component
+   triggers by remounting the panel. It is gated on useReducedMotion(). Each
+   step's illustration keeps its own beats in a block further down: jp-dsc-,
+   jp-arc-, jp-spr- and jp-lch-. */
 @keyframes jp-proc-in {
   from { opacity: 0; transform: translateY(11px); }
   to { opacity: 1; transform: none; }
+}
+
+/* ------------------------------------------------------------------------
+   Discover — the worksheet from one discovery call.
+
+   One 6.4s clock, the same length as the studio's autoplay dwell, so a
+   reader who lets the rail walk sees the call play out exactly once.
+
+   Three asks arrive in cascade. The rows share `jp-dsc-ask` and are offset
+   by animation-delay, which is what makes the sheet clear in the same
+   order it filled — the delay carries all of a row's keyframes together,
+   so percentages below are beats of that row's own clock, not the panel's.
+
+   Two asks resolve to a number: the gauge runs (jp-dsc-gauge) and the
+   value lands on it as it tops out (jp-dsc-mark). The third is something
+   nothing can measure, so it is struck out (jp-dsc-strike) and dimmed
+   (jp-dsc-cut) instead of scored — it never reaches the estimate. What
+   survives is then highlighted as one measurable goal (jp-dsc-goal).
+
+   Every keyframe's resolved state is also its element's base style, so
+   StepArt only has to drop the animation under prefers-reduced-motion and
+   the finished sheet is what remains.
+
+   The call, in seconds (rows staggered by ASK_STEP = 0.3s):
+
+     0.0 - 1.1   the three asks arrive, one after another
+     0.6 - 2.3   the two measurable ones fill and take a number
+     2.4 - 3.2   the third cannot be measured: struck out, then dimmed
+     3.2 - 5.4   what survives is highlighted as the goal
+     5.3 - 6.4   the sheet clears, top down, ready for the next call */
+@keyframes jp-dsc-ask {
+  0% { opacity: 0; transform: translateY(8px); }
+  8%, 82% { opacity: 1; transform: none; }
+  90%, 100% { opacity: 0; transform: translateY(-7px); }
+}
+
+@keyframes jp-dsc-gauge {
+  0%, 10% { transform: scaleX(0); }
+  24%, 100% { transform: scaleX(1); }
+}
+
+@keyframes jp-dsc-mark {
+  0%, 24% { opacity: 0; transform: translateY(5px) scale(0.92); }
+  31%, 100% { opacity: 1; transform: none; }
+}
+
+/* Both numbers are on the sheet by 2.3s, so the cut reads as a decision taken
+   against them rather than as another row still being scored. */
+@keyframes jp-dsc-strike {
+  0%, 28% { transform: scaleX(0); }
+  37%, 100% { transform: scaleX(1); }
+}
+
+@keyframes jp-dsc-cut {
+  0%, 32% { opacity: 1; }
+  40%, 100% { opacity: 0.34; }
+}
+
+/* The goal is wiped in like a highlighter stroke — clip-path rather than a
+   scaled box, so the words inside it are never stretched. */
+@keyframes jp-dsc-goal {
+  0%, 50% { opacity: 1; clip-path: inset(0 100% 0 0); }
+  61%, 84% { opacity: 1; clip-path: inset(0 0 0 0); }
+  92%, 100% { opacity: 0; clip-path: inset(0 0 0 0); }
+}
+
+/* ------------------------------------------------------------------------
+   Architect — the data model, drawn on paper and then revised.
+
+   The same 6.4s clock as the Discover sheet. Three tables draw themselves
+   onto the grid (jp-arc-card, staggered by animation-delay), then their
+   relations are ruled in one segment at a time: the link across the top
+   (jp-arc-line), the drop down the side (jp-arc-drop), and the run out to
+   the third table (jp-arc-run).
+
+   Then the argument the step's copy actually makes: one table is moved to
+   a new slot (jp-arc-move) and the run stretches to follow it (the second
+   stop in jp-arc-run) — the two are timed to land together, so the
+   relation costs nothing to keep. What the change cost is left behind in
+   the empty slot (jp-arc-ghost). Nothing here is code; it is all still
+   lines on paper, which is the point of doing it in week one.
+
+   Geometry is in percentages of the field, so the elbow stays square at
+   any panel size and the wires meet the tables exactly:
+
+     tables      32% wide, 28% tall; rows at top 11% and top 61%
+     link        y 25%, x 32% -> 68%
+     drop        x 20%, y 39% -> 75%
+     run         y 75%, x 20% -> 68%, drawn to 29.2% of its length first
+                 (x 20% -> 34%, the table's old slot)
+
+   Move those and jp-arc-run's middle stop moves with them. As on the
+   Discover sheet, every keyframe resolves to its element's base style, so
+   prefers-reduced-motion is left holding the finished, revised drawing. */
+@keyframes jp-arc-card {
+  0% { opacity: 0; transform: translateY(6px) scale(0.96); }
+  8%, 84% { opacity: 1; transform: none; }
+  91%, 100% { opacity: 0; transform: translateY(-5px) scale(0.98); }
+}
+
+@keyframes jp-arc-line {
+  0%, 12% { opacity: 0.55; transform: scaleX(0); }
+  23%, 84% { opacity: 0.55; transform: scaleX(1); }
+  91%, 100% { opacity: 0; transform: scaleX(1); }
+}
+
+@keyframes jp-arc-drop {
+  0%, 23% { opacity: 0.55; transform: scaleY(0); }
+  31%, 84% { opacity: 0.55; transform: scaleY(1); }
+  91%, 100% { opacity: 0; transform: scaleY(1); }
+}
+
+@keyframes jp-arc-run {
+  0%, 31% { opacity: 0.55; transform: scaleX(0); }
+  38%, 47% { opacity: 0.55; transform: scaleX(0.292); }
+  58%, 84% { opacity: 0.55; transform: scaleX(1); }
+  91%, 100% { opacity: 0; transform: scaleX(1); }
+}
+
+/* Carries the moving table's own stagger, so the reset at 92% still lands
+   after that table has faded out at 91% rather than snapping in view. */
+@keyframes jp-arc-move {
+  0%, 40% { left: 34%; }
+  51%, 91% { left: 68%; }
+  92%, 100% { left: 34%; }
+}
+
+/* Held back until the table has fully cleared the slot it is leaving. */
+@keyframes jp-arc-ghost {
+  0%, 56% { opacity: 0; }
+  62%, 76% { opacity: 1; }
+  86%, 100% { opacity: 0; }
+}
+
+/* ------------------------------------------------------------------------
+   Build — three increments off one backlog, and the steer between them.
+
+   The same 6.4s clock as the other two panels. Four backlog items sit in four
+   fixed slots. An increment rewrites the row in the slot it is working on,
+   from queued to shipped, with a left-to-right clip wipe (jp-spr-ship-a, -b,
+   -c). The wipe is the increment filling: the item's name brightens under it,
+   the accent rule fills in beneath it, and the version tag and the staging
+   build land last, at the right-hand end — so the changelog line is written
+   when the work lands rather than when it starts.
+
+   Between increments is the beat the step's copy is actually about. At each
+   checkpoint a queued item jumps the one above it — Roles first
+   (jp-spr-jump-a), then Refunds (jp-spr-jump-b) — while CSV export is pushed
+   down both times (jp-spr-defer) and a marker names the move (jp-spr-steer).
+   Each jump lands exactly as the next increment starts filling, and the next
+   increment builds whatever is in the next slot, so the steer is visibly the
+   cause of what gets built: the loop closes on a record whose order is not
+   the order it opened with, the item that kept being steered past still
+   queued at the bottom. That difference is the whole claim.
+
+   Slots, as percentages of the field — rows are 22% tall, 4% apart:
+
+     slot 0  top 0%    built by increment 1, 0.38 - 1.28s
+     slot 1  top 26%   built by increment 2, 2.05 - 2.94s
+     slot 2  top 52%   built by increment 3, 3.71 - 4.61s
+     slot 3  top 78%   never built
+
+   Move those and every stop in the jump, defer and steer keyframes moves with
+   them. The two jumpers ride over the row they displace, which is z-index and
+   an opaque plate in StepArt, not timing.
+
+   The loop, in seconds:
+
+     0.00 - 0.32   the backlog arrives, all four rows at once
+     0.38 - 1.28   increment 1 builds slot 0; v0.1 lands on staging
+     1.66 - 2.05   checkpoint: Roles jumps into slot 1, CSV export drops
+     2.05 - 2.94   increment 2 builds slot 1; v0.2 lands
+     3.33 - 3.71   checkpoint: Refunds jumps into slot 2, CSV export drops
+     3.71 - 4.61   increment 3 builds slot 2; v0.3 lands
+     4.61 - 5.50   the record holds: three shipped, one still queued
+     5.50 - 5.95   the rows clear; every slot and wipe resets after 6.02s,
+                   behind opacity 0, so the loop seam is never seen
+
+   The rows share jp-spr-row with no stagger on purpose: they are the backlog
+   agreed in step 02, so they are all already there, and a delay big enough to
+   read would carry each row's clear-out past the seam. Everything else has
+   its own keyframe and its beat written as percentages.
+
+   As on the other two panels, each keyframe's held state is its element's
+   base style, so prefers-reduced-motion is left holding the finished
+   changelog — three shipped rows in the order the steers produced them, and
+   the deferred item still on the list. */
+@keyframes jp-spr-row {
+  0% { opacity: 0; }
+  5%, 86% { opacity: 1; }
+  93%, 100% { opacity: 0; }
+}
+
+@keyframes jp-spr-ship-a {
+  0%, 6% { clip-path: inset(0 100% 0 0); }
+  20%, 93% { clip-path: inset(0 0 0 0); }
+  94%, 100% { clip-path: inset(0 100% 0 0); }
+}
+
+@keyframes jp-spr-ship-b {
+  0%, 32% { clip-path: inset(0 100% 0 0); }
+  46%, 93% { clip-path: inset(0 0 0 0); }
+  94%, 100% { clip-path: inset(0 100% 0 0); }
+}
+
+@keyframes jp-spr-ship-c {
+  0%, 58% { clip-path: inset(0 100% 0 0); }
+  72%, 93% { clip-path: inset(0 0 0 0); }
+  94%, 100% { clip-path: inset(0 100% 0 0); }
+}
+
+@keyframes jp-spr-jump-a {
+  0%, 26% { top: 52%; }
+  32%, 93% { top: 26%; }
+  94%, 100% { top: 52%; }
+}
+
+@keyframes jp-spr-jump-b {
+  0%, 52% { top: 78%; }
+  58%, 93% { top: 52%; }
+  94%, 100% { top: 78%; }
+}
+
+/* The one nothing is ever steered towards: passed over at both checkpoints,
+   and the row prefers-reduced-motion leaves still queued at the bottom. */
+@keyframes jp-spr-defer {
+  0%, 26% { top: 26%; }
+  32%, 52% { top: 52%; }
+  58%, 93% { top: 78%; }
+  94%, 100% { top: 26%; }
+}
+
+/* Names the move, at the slot the item jumped into: slot 1 on the first
+   checkpoint, slot 2 on the second. Both hops between slots are made at
+   opacity 0, so the marker is never seen travelling. */
+@keyframes jp-spr-steer {
+  0%, 26% { opacity: 0; top: 26%; }
+  29%, 36% { opacity: 1; top: 26%; }
+  40%, 44% { opacity: 0; top: 26%; }
+  48%, 52% { opacity: 0; top: 52%; }
+  55%, 62% { opacity: 1; top: 52%; }
+  66%, 70% { opacity: 0; top: 52%; }
+  74%, 100% { opacity: 0; top: 26%; }
+}
+
+/* ------------------------------------------------------------------------
+   Ship & support — the launch, in the order the copy promises it.
+
+   The same 6.4s clock as the other three panels, and the only one of the four
+   whose loop does not rest on an empty stage. The three phases are strictly
+   sequential, because the sequence is the promise: the release checklist has
+   to be complete before the release is allowed to run (jp-lch-tick, then
+   jp-lch-rail), the week of real traffic does not start until it is live
+   (jp-lch-live, then jp-lch-day), and only then does the documentation cross
+   to the client's own team (jp-lch-hand, jp-lch-docs, jp-lch-team). Nothing
+   here overlaps: a bar rising before the rail has run would be the panel
+   contradicting the sentence beside it.
+
+   THE ENDING IS DELIBERATELY ASYMMETRIC. Discover, Architect and Build all
+   clear to nothing and redraw, because each of those steps finishes. This one
+   does not — it runs 30 days past launch. So one element, the support light,
+   sits OUTSIDE the group jp-lch-clear fades, and jp-lch-hold only dims it
+   while the launch is playing and brings it back up as everything else goes.
+   The loop's resting state is therefore the support window still open, alone
+   on the panel, for the last 0.9s and across the seam into the next lap. If
+   you ever make this panel clear completely, the art stops making the step's
+   actual claim.
+
+   jp-lch-clear doing the clearing is what keeps the rest of the block short:
+   nothing inside it needs a fade-out of its own, only a reset, and every
+   reset is parked at 89-91% where the group is already dark.
+
+   Two sets carry an animation-delay, which is safe because each set shares
+   one keyframe: the three checks (0.28s apart) and the seven days (0.10s
+   apart). Both staggers are kept small on purpose — a delayed element's reset
+   lands that much later, and the largest here (9.4% of the loop, the seventh
+   day) still finishes at 100.4%, inside the window jp-lch-clear holds dark.
+   Widen either stagger and a reset walks out into the light.
+
+   The loop, in seconds:
+
+     0.00 - 0.13   still resting: the support light and nothing else
+     0.13 - 0.38   the launch comes up
+     0.45 - 1.26   three checks tick, one at a time
+     1.41 - 2.11   the release is allowed to run; the rail fills
+     2.11 - 2.24   it goes live, and the day axis arrives with it
+     2.43 - 3.42   seven days of real traffic, in order, under watch
+     3.58 - 3.78   the handover appears
+     3.78 - 4.48   the documentation crosses
+     4.48 - 4.61   the client's team takes the accent: it is theirs now
+     4.61 - 5.12   the launch holds, complete
+     5.12 - 5.63   everything clears — except the light
+     5.63 - 6.40   the resting state again, 30 days of it
+
+   As on the other three panels, each keyframe's held state is its element's
+   base style, so prefers-reduced-motion is left holding the whole launch:
+   checks ticked, rail run, week up, docs handed over, light on. */
+@keyframes jp-lch-clear {
+  0%, 2% { opacity: 0; }
+  6%, 80% { opacity: 1; }
+  88%, 100% { opacity: 0; }
+}
+
+@keyframes jp-lch-tick {
+  0%, 7% { opacity: 0; transform: scale(0.5); }
+  11%, 89% { opacity: 1; transform: none; }
+  91%, 100% { opacity: 0; transform: scale(0.5); }
+}
+
+/* Starts at 22%, which is after the last check has landed at 19.75% — the
+   release is gated on the checklist, not merely next to it. */
+@keyframes jp-lch-rail {
+  0%, 22% { transform: scaleX(0); }
+  33%, 89% { transform: scaleX(1); }
+  91%, 100% { transform: scaleX(0); }
+}
+
+/* Shared by the live marker and the day axis: the frame for the week arrives
+   with the release, the data in it does not. */
+@keyframes jp-lch-live {
+  0%, 33% { opacity: 0; }
+  35%, 89% { opacity: 1; }
+  91%, 100% { opacity: 0; }
+}
+
+@keyframes jp-lch-day {
+  0%, 38% { transform: scaleY(0); }
+  44%, 89% { transform: scaleY(1); }
+  91%, 100% { transform: scaleY(0); }
+}
+
+@keyframes jp-lch-hand {
+  0%, 56% { opacity: 0; }
+  59%, 89% { opacity: 1; }
+  91%, 100% { opacity: 0; }
+}
+
+@keyframes jp-lch-docs {
+  0%, 59% { left: 0%; }
+  70%, 89% { left: 54%; }
+  91%, 100% { left: 0%; }
+}
+
+/* The receipt: the slot stops being a placeholder and becomes theirs. Border
+   style cannot animate, so only colour moves here. */
+@keyframes jp-lch-team {
+  0%, 70% { border-color: rgba(255,255,255,.16); color: #5E6064; }
+  72%, 89% { border-color: var(--accent); color: var(--accent); }
+  91%, 100% { border-color: rgba(255,255,255,.16); color: #5E6064; }
+}
+
+/* The one thing that outlives the launch. Lit at 0% and at 100%, so it is
+   continuous across the seam: it only steps back while there is something
+   louder to look at, and returns as that clears. */
+@keyframes jp-lch-hold {
+  0%, 8% { opacity: 1; }
+  18%, 76% { opacity: 0.26; }
+  86%, 100% { opacity: 1; }
 }
 
 /* Work-card scenes — each project's little diorama, floating over its cover.
