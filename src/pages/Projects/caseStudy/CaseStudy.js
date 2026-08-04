@@ -490,7 +490,7 @@ function CaseStudyBody({ theme, content }) {
                       color: ink.headline,
                     }}
                   >
-                    <span>{stat.value}</span>
+                    {stat.value && <span>{stat.value}</span>}
                     {stat.accent && (
                       <Box component="span" sx={{ color: ACCENT }}>
                         {stat.accent}

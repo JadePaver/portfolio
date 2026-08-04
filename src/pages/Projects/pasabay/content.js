@@ -80,11 +80,20 @@ export const brief = {
         "One flow from browse to doorstep: sign-in without a password, two ways to buy, and a saved address label the rider can actually follow.",
     },
   ],
+  /**
+   * Phrases, not counts. The brief is four product decisions and none of them is
+   * a number worth printing — a tap count or a screen total says nothing about
+   * what makes PasaBay different from a restaurant marketplace.
+   *
+   * The gold word carries the decision, so it leads in three of the four and
+   * `value` is left off entirely. "By barangay" reads wrong that way round, so
+   * there the preposition takes `value` and the accent lands second.
+   */
   stats: [
-    { value: "2", accent: "days", spaced: true, label: "Menu horizon — today & tomorrow" },
-    { value: "0", label: "Passwords — OTP plus a 4-digit PIN" },
-    { value: "₱30", label: "Delivery fee, shown before you pay" },
-    { value: "4", label: "Surfaces — home · messages · calendar · alerts" },
+    { accent: "Home", after: "cooks", spaced: true, label: "The primary sellers, not restaurants" },
+    { accent: "Tomorrow", after: "too", spaced: true, label: "Pre-order, not only order now" },
+    { value: "By", accent: "barangay", spaced: true, label: "Kitchens matched to who is nearby" },
+    { accent: "Pin", after: "first", spaced: true, label: "Address dropped on a map, then labelled" },
   ],
 };
 
