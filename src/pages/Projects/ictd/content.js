@@ -4,6 +4,17 @@
  * Kept out of the components so the page reads as a running order of chapters
  * and the copy can be edited without going near layout code.
  *
+ * The copy is checked against the shipped app, not remembered: `ictd_app`
+ * (Flutter + Supabase), `ictd_app_express` (the console's typed API) and
+ * `ictd_app_react` (the console itself). Two things surprise an editor: the
+ * console has no messaging module by choice, and it refetches rather than
+ * subscribing, so only the phone is live.
+ *
+ * `hero.png` and the four `feat-*.png` are presentation slides with their own
+ * headings and bullets baked into the image. A chapter's title and cards may
+ * go past what its slide says (ch3 and ch4 already do) but must not
+ * contradict it, because the plate renders directly under the heading.
+ *
  * ---------------------------------------------------------------------------
  * ASSETS: the sixteen PNGs below are expected in `public/images/ictd/`.
  * Until they are dropped in, every figure falls back to a labelled placeholder
@@ -34,11 +45,11 @@ export const hero = {
   titleSx: { fontSize: "clamp(52px, 9.4vw, 124px)" },
   tagline: "Asset & custody management.",
   lead:
-    "The service desk of the Information and Communications Technology Division, Office of the Governor — technical requests, the repair bench, and equipment custody kept on one record. Staff open it from a phone in the field; the division works it from a console at the desk.",
+    "The service desk of the Information and Communications Technology Division. An employee files a hardware or software problem from their phone, and every operator on the bench is told the same second. Requests, units booked in at the counter and the notices that follow all live on one record: worked from the field on Android, watched from the console at the desk.",
   scrollHint: "Scroll for the full story",
   meta: [
     { term: "Role", value: "Designer & developer" },
-    { term: "Client", value: "ICTD — Office of the Governor" },
+    { term: "Client", value: "ICTD — Information and Communications Technology Division" },
     { term: "Platform", value: "Android app + web console" },
     { term: "Scope", value: "Product design + build" },
   ],
@@ -53,7 +64,7 @@ export const hero = {
 };
 
 export const tickerLine =
-  "ASSET & CUSTODY MANAGEMENT  ✦  ICTD APP  ✦  REQUESTS · REPAIRS · INVENTORY · MESSAGES  ✦  ONE RECORD, TWO FRONT DOORS  ✦";
+  "ASSET & CUSTODY MANAGEMENT  ✦  ICTD APP  ✦  REQUESTS · REPAIRS · ANNOUNCEMENTS · MESSAGES  ✦  FILED ON A PHONE, PUSHED TO THE BENCH  ✦  ONE RECORD, TWO FRONT DOORS  ✦";
 
 export const brief = {
   id: "brief",
@@ -61,30 +72,46 @@ export const brief = {
   kicker: "The brief",
   title: "Where the logbook kept failing",
   lead:
-    "A division that fixes everyone else's equipment was running its own queue on phone calls, group chats, and a paper logbook. The brief was to make one record everybody can read.",
+    "A division that fixes everyone else's equipment was running its own queue on phone calls, group chats, and a paper logbook. The brief was to make one record everybody can read, and to make it speak up on its own.",
   panels: [
     {
       term: "The problem",
       body:
-        "Requests arrived by call and chat, repairs were tracked on paper, and custody of a unit was whatever the last person remembered. Nobody could answer “where is it, and who touched it last?”",
+        "Requests arrived by call, by chat, or by a knock at the door, repairs were tracked on paper, and notices travelled by word of mouth. Nobody could say whether a request had even been seen, let alone “where is it, and who touched it last?”",
     },
     {
       term: "The approach",
       body:
-        "One record per request and per unit, with an append-only activity log instead of an editable status field — surfaced twice: a field app for staff and technicians, and a triage console for the division.",
+        "One record with two roles on it: the employee who asks, and the ICTD operator who answers. An append-only activity log stands in for an editable status field, and the write itself raises the notification, so being told is not a habit anyone has to keep.",
     },
     {
       term: "The outcome",
       body:
-        "Every ticket and every unit on the bench carries its own timeline, its owner, and the technician who answered — readable from either front door, with no second copy to reconcile.",
+        "Every ticket and every unit carries its own timeline, its owner, and the operator who answered. The phone is told as it happens; the console shows the division the whole board, oldest first.",
     },
   ],
+  /**
+   * Decisions, not inventory. A module count restates card 3.4 and a "100%"
+   * dresses up a design decision as a measurement. What the brief is about is
+   * how a technical division actually runs: an app in the field backed by a
+   * desk console, a Postgres trigger raising the push so no client has to
+   * remember to, one serial number carrying its request, its repair and its
+   * custodian, and notices aimed at a department instead of sprayed at
+   * everybody.
+   *
+   * The gold word carries the decision and leads in each, so `value` is dropped
+   * throughout. Phrases stay short, because the display line is `inline-flex`
+   * and does not wrap, so it overflows rather than reflows. "Push on write" is
+   * thirteen characters, the longest that clears the ~276px a four-up column
+   * leaves in the 1240px shell at the 42px display size. The fourth runs on the
+   * accent alone: its contrast, "aimed, not blasted", is eighteen and would
+   * hang out of the column, so the caption carries the rest of the thought.
+   */
   stats: [
-    /** Two clients collapsing onto one record, so the arrow needs air on both sides. */
-    { value: "2", accent: "→", after: "1", spaced: true, label: "Clients, one shared record" },
-    { value: "9", label: "Modules in the console" },
-    { value: "4", label: "Triage states, oldest first" },
-    { value: "100", accent: "%", label: "Actions written to the log" },
+    { accent: "Phone", after: "first", spaced: true, label: "Field app leads, the console follows" },
+    { accent: "Push", after: "on write", spaced: true, label: "The database raises it, not the app" },
+    { accent: "Per", after: "serial", spaced: true, label: "Request, repair and custody on one unit" },
+    { accent: "Aimed", label: "Pick a department or everyone, every time" },
   ],
 };
 
@@ -97,7 +124,7 @@ export const chapters = [
     title: "Every request keeps its own thread",
     lead: {
       before:
-        "A staff member files the problem in their own words. What comes back is not a status — it's a ",
+        "A staff member files the problem in their own words, and every operator's phone is told the moment it lands. What comes back is not a status. It's a ",
       em: "record of who did what, and when.",
     },
     figure: {
@@ -120,13 +147,13 @@ export const chapters = [
         num: "1.2",
         title: "Filed to a department",
         body:
-          "Type, office, ticket number and timestamp sit on the card before you expand anything.",
+          "Hardware or software, the office it came from, a ticket number and a timestamp: all on the card before you expand anything.",
       },
       {
         num: "1.3",
         title: "An activity log, not a status",
         body:
-          "Created, Processing, Done — each step keeps its author, its note, and the time it happened.",
+          "Created, Processing, Done. Each step keeps its author, its note, and the time it happened.",
       },
       {
         num: "1.4",
@@ -143,7 +170,7 @@ export const chapters = [
     kicker: "Repair bench",
     title: "Book it in, track it out",
     lead:
-      "Custody is the whole job. Each unit on the bench carries its serial number, the condition it arrived in, the condition it left in, and every hand it passed through.",
+      "Custody is the whole job. A unit can sit at the counter for a month, and not every one goes home; some are closed out for disposal rather than released. Either way it carries its serial number, its condition at both ends, and every hand it passed through.",
     figure: {
       src: asset("feat-repairs.png"),
       file: "feat-repairs.png",
@@ -158,7 +185,7 @@ export const chapters = [
         num: "2.1",
         title: "Status is an event",
         body:
-          "Received → Repairing → Ready for release, each with a note attached — never a field somebody overwrote.",
+          "Received, repairing, ready for release, closed. Each is a row with an author and a note attached, never a field somebody overwrote.",
       },
       {
         num: "2.2",
@@ -187,7 +214,7 @@ export const chapters = [
     kicker: "Admin console",
     title: "Triage from one board",
     lead:
-      "The same records, arranged for the people who clear them. Oldest first, decision buttons on the card, and the bench grouped by whose desk it's sitting on.",
+      "The same records, arranged for the people who clear them, plus the numbers nobody could see before: counts, trends, and a running feed of what just happened. Oldest first, decisions on the card, and the bench grouped by whose desk it's sitting on.",
     figure: {
       src: asset("feat-admin.png"),
       file: "feat-admin.png",
@@ -202,25 +229,25 @@ export const chapters = [
         num: "3.1",
         title: "Oldest first, on purpose",
         body:
-          "Each column states the age of the oldest ticket in it, so the queue can't quietly rot.",
+          "Each column states the age of the oldest ticket in it, and accept, deny or complete are decided on the card without opening a page.",
       },
       {
         num: "3.2",
-        title: "Decide from the card",
-        body:
-          "Accept, deny or complete without opening a detail page or losing your place.",
-      },
-      {
-        num: "3.3",
         title: "Grouped by technician",
         body:
           "The repair list stacks by whose bench it's on, with days-in-shop flagged in red.",
       },
       {
+        num: "3.3",
+        title: "Aimed, not blasted",
+        body:
+          "A broadcast switch, or a picked list of departments, with an optional time for it to go out later.",
+      },
+      {
         num: "3.4",
         title: "Nine modules, one shell",
         body:
-          "Operations, inventory and directory sit in one sidebar — requests through custodians.",
+          "Operations, inventory and directory in one sidebar: requests and repairs through inventory, memorandum receipts, and the custodians who sign for them.",
       },
     ],
     figureAside: {
@@ -239,10 +266,16 @@ export const chapters = [
     id: "ch4",
     tone: "ink",
     num: "04",
-    kicker: "Messages",
+    /**
+     * Chat and the notification feed share a chapter because they are the same
+     * promise from two directions: the app tells you, instead of waiting to be
+     * checked. Announcements are composed on the console (card 3.3) and land
+     * here, under the bell, alongside request activity and replies.
+     */
+    kicker: "Messages & notifications",
     title: "Ask the person holding your unit",
     lead:
-      "Follow-up used to live in a group chat nobody could search. Now it sits inside the app that already knows which ticket you're asking about.",
+      "Follow-up used to live in a group chat nobody could search. Now it sits inside the app that already knows which ticket you're asking about, and everything else the account did today is waiting under the bell.",
     figure: {
       src: asset("feat-messages.png"),
       file: "feat-messages.png",
@@ -273,9 +306,9 @@ export const chapters = [
       },
       {
         num: "4.4",
-        title: "Three ways in",
+        title: "Pushed, then filed",
         body:
-          "Mobile number, Google, or Facebook — the same account the record is signed against.",
+          "The same notice arrives as a push and waits under the app-bar bell, tagged announcement, request or message, and opening the record it came from.",
       },
     ],
   },
@@ -305,7 +338,12 @@ export const screens = {
       file: "scr-signin.png",
       src: asset("scr-signin.png"),
       alt: "Sign in screen with mobile, Facebook and Google",
-      caption: "S.02 — Sign in · mobile number, Google, or Facebook",
+      /**
+       * Captioned by what sign-in is for, not by the buttons in the shot: the
+       * app has since narrowed to a single ICTD Google account, and a caption
+       * that counted the routes would date the moment it changed again.
+       */
+      caption: "S.02 — Sign in · the account every record is signed against",
     },
     {
       code: "S.03",
@@ -380,21 +418,21 @@ export const notes = {
     },
     {
       code: "N.02",
-      title: "Two clients, one contract",
+      title: "Two front doors, one database",
       body:
-        "The field app and the console read the same records through the same API. Nothing in the office view is a second copy that has to be reconciled later.",
+        "Same Supabase Postgres database under both surfaces. The phone talks to it directly, under row-level security. The web console goes through a small typed API that gates every route on the operator role. Different doors, same table. Nothing in the office view is a second copy to reconcile.",
     },
     {
       code: "N.03",
-      title: "Queues sorted by age, not by priority",
+      title: "The database sends the push, not the app",
       body:
-        "Self-declared urgency always inflates. The board sorts oldest-first and prints the age of the oldest item in each column, so neglect is visible instead of arguable.",
+        "An insert fires a trigger into an edge function into FCM. Notifying is therefore not a step a client can skip, and a request reaches the bench whether or not anyone has the app open.",
     },
     {
       code: "N.04",
-      title: "Written for the person at the counter",
+      title: "Chat stayed on the phone",
       body:
-        "Intake fields carry an in-app guide with examples, because the form is filled in front of an owner who is already annoyed that their unit broke.",
+        "The console does everything the app does except message. Follow-up belongs where the technician already is, and a web inbox nobody watches is worse than no web inbox at all.",
     },
   ],
   poster: {
@@ -414,10 +452,20 @@ export const outcome = {
   headline: "The logbook became a record",
   body: {
     before:
-      "Requests, repairs and custody now share one timeline that both the field and the office can read — ",
+      "Requests, repairs, announcements and custody now share one timeline that both the field and the office can read, and the phone is told the moment any of it moves, ",
     em: "so “where is it, and who touched it last?” has an answer on the screen.",
   },
-  stack: ["FLUTTER", "DART", "WEB CONSOLE", "REST API", "FIGMA"],
+  stack: [
+    "FLUTTER",
+    "DART",
+    "SUPABASE",
+    "POSTGRES + RLS",
+    "REALTIME",
+    "FCM PUSH",
+    "REACT · TYPESCRIPT",
+    "EXPRESS",
+    "FIGMA",
+  ],
 };
 
 /** Order matters — the rail and the scroll spy both walk this top to bottom. */

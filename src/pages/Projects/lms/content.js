@@ -70,7 +70,7 @@ export const brief = {
     {
       term: "The approach",
       body:
-        "One shell for two roles. Every module is a syllabus of lessons plus difficulty-tiered assessments, and every assessment opens as a workspace: spec on the left, editor and test runner on the right.",
+        "One shell for two roles. Every module is a syllabus of lessons and tiered assessments, assigned per student and dated to open when the instructor plans it, and every assessment opens as a workspace: spec on the left, editor and test runner on the right.",
     },
     {
       term: "The outcome",
@@ -78,11 +78,27 @@ export const brief = {
         "Students practise where they read, and instructors open the day on a review queue with counts already attached — pending, passed and failed, per module.",
     },
   ],
+  /**
+   * Decisions, not inventory. Eighteen modules is the ch1 title, three tiers is
+   * card 2.2 and five surfaces is note N.03, so reprinting them here would make
+   * the row a table of contents.
+   *
+   * What it states instead is how a course is actually run: a student is given
+   * their own set of modules rather than a shelf to browse, the instructor dates
+   * those modules to open so a term is planned in one sitting, the single
+   * attempt is announced long before it is spent, and one shell carries both
+   * halves of the product.
+   *
+   * The gold word carries the decision and leads where the phrase allows, so
+   * `value` is dropped in half of them; "Per student" and "One attempt" need
+   * their qualifier in front. Phrases stay ≤12 characters: the shell is 1240px,
+   * which leaves a four-up column ~276px, and the display size runs to 42px.
+   */
   stats: [
-    { value: "18", label: "Modules across six tracks" },
-    { value: "3", label: "Difficulty tiers — easy · medium · hard" },
-    { value: "1", accent: "×", label: "Submission per assessment, locked" },
-    { value: "5", label: "Surfaces, two roles, one shell" },
+    { value: "Per", accent: "student", spaced: true, label: "Each student gets their own module set" },
+    { accent: "Plan", after: "ahead", spaced: true, label: "Modules open on a date set in advance" },
+    { value: "One", accent: "attempt", spaced: true, label: "Said three times before it's spent" },
+    { accent: "Both", after: "roles", spaced: true, label: "Publish and grade where students submit" },
   ],
 };
 
@@ -106,9 +122,9 @@ export const chapters = [
     title: "Eighteen modules, six tracks, one grid",
     lead: {
       before:
-        "The front door for both roles. Track filters carry their own counts, and every card states its scope — ",
+        "The front door for both roles. An instructor sees the whole library; a student sees the modules assigned to them, and every card states its scope: ",
       em: "how long, how hard, who wrote it",
-      after: " — before a student commits.",
+      after: ", before a student commits.",
     },
     figure: {
       src: asset("feat-catalog.png"),
@@ -196,7 +212,7 @@ export const chapters = [
     kicker: "Assessment workspace",
     title: "Write, run and submit in the browser",
     lead:
-      "The brief, the API contract and a starter file sit beside a live editor. Students run their component against the module's tests, read the terminal, and only then lock in the one submission they get.",
+      "The brief, the API contract and a starter file sit beside a live editor, with nothing installed and nothing configured. Students run their component against the module's tests, read the terminal, and only then lock in the one submission they get.",
     figure: {
       src: asset("feat-workspace.png"),
       file: "feat-workspace.png",
@@ -257,9 +273,9 @@ export const chapters = [
       },
       {
         num: "4.2",
-        title: "Live or not, at a glance",
+        title: "Live now, or dated",
         body:
-          "Publish state and track tag ride next to the title; unpublishing never means deleting.",
+          "Publish state and track tag ride beside the title, and a module can be dated to open on its own.",
       },
       {
         num: "4.3",
@@ -309,7 +325,7 @@ export const chapters = [
         num: "5.3",
         title: "Review without leaving",
         body:
-          "Each row expands to the submitted code and a pass / fail decision, feedback optional.",
+          "Each row expands to the submitted code; the instructor sets pass or fail, not the runner.",
       },
       {
         num: "5.4",
@@ -433,7 +449,7 @@ export const outcome = {
   body: {
     before:
       "Eighteen modules, three difficulty tiers and a single locked attempt per assessment, with the instructor's review queue attached to the same rows students submit into — ",
-    em: "a course that grades itself into shape.",
+    em: "so the only thing left to judge is the code.",
   },
   stack: ["REACT", "NODE.JS", "EXPRESS", "MYSQL", "FIGMA"],
 };

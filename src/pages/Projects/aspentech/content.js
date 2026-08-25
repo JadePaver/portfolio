@@ -82,11 +82,22 @@ export const brief = {
         "The proposal request now arrives with a configuration attached: chosen template, design style, layout, module set, and an indicative scope band, a shared picture on day one instead of week six.",
     },
   ],
+  /**
+   * Phrases, not counts. A style total and a preview count are inventory, and a
+   * "0" set at display size reads as a result that didn't happen — the four
+   * things worth printing here are the decisions that made the sales site a
+   * product: it demos, the templates are real, the buyer holds the controls,
+   * and the enquiry comes back configured.
+   *
+   * The gold word carries the decision, so it leads wherever the phrase allows
+   * and `value` is dropped; "Six shipped" and "One config" need the count in
+   * front, so there the accent lands second.
+   */
   stats: [
-    { value: "6", label: "System templates, all shippable" },
-    { value: "7", label: "Design styles, one click apart" },
-    { value: "2", label: "Live previews · desktop & mobile" },
-    { value: "0", label: "Mockups drawn per enquiry" },
+    { accent: "Demo", after: "first", spaced: true, label: "The live product, not a slide deck" },
+    { value: "Six", accent: "shipped", spaced: true, label: "Templates in production, not concepts" },
+    { accent: "Buyer", after: "drives", spaced: true, label: "They re-skin and re-scope it themselves" },
+    { value: "One", accent: "config", spaced: true, label: "The enquiry arrives already specified" },
   ],
 };
 

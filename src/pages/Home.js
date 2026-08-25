@@ -119,15 +119,15 @@ const PROJECTS = [
     sig: "Ticket flow",
     scene: "servicedesk",
     link: "/ictd",
-    year: "2025",
+    year: "2026",
     role: "Designer & developer",
     platform: "Web + Android",
     summary:
-      "A service-desk platform in two halves: a Flutter app for field operators and a React admin dashboard for staff, both reading and writing the same live Supabase data.",
+      "A service-desk platform in two halves: a Flutter app for the employees who file and the ICTD staff who answer, and a React dashboard for the desk. One live Supabase record sits under both, with announcements and push tying them together.",
     problem:
       "Requests made over chat, email, or a walk-up desk leave no record of who asked, who is handling it, or whether it was ever resolved. A laptop left for repair is just as easy to lose track of once it leaves the owner's hands, and a paper log shows neither status nor who last touched it.",
     build:
-      "One workflow on two surfaces: a Flutter app for clients and field operators, a React and TypeScript dashboard for desk staff, both against the same live Supabase data. Requests and repair items share a book-in to book-out lifecycle, and tapping a requester's name opens a direct thread with that person.",
+      "One workflow on two surfaces: a Flutter app for clients and operators, a React and TypeScript dashboard for desk staff, both against the same live Supabase data. Requests and repair items share a book-in to book-out lifecycle, filing one trips a Postgres trigger that pushes it to every operator's phone, and announcements go to all departments or to a picked few.",
     outcome:
       "Field work and desk work each get the posture that suits them without forking the implementation, so a fix lands once instead of three times.",
     tech: [
